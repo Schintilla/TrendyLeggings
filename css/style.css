@@ -1,34 +1,51 @@
 ﻿html {
     background-color:lightgray;
 }
-
 body {
+    /*position: relative;*/
     font-family: Arial, sans-serif;
     margin: auto;
     padding: 0;
     max-width: 960px;
-    position:relative;
+}
+
+main {
+    padding: 10px;
+    margin-top: 165px;
+    background-color: antiquewhite;
 }
 
 header {
+    position: fixed;
+    top: 0;
+/*    left: 10px;
+    max-width: 940px;*/
+    width: 940px;
     background-color: #333;
-    color: #fff;
-    padding: 5px;
+    color: aliceblue;
+    height: 140px;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-h2 {
-    color:darkcyan;
+/*    justify-content: space-between;
+    justify-content: center;
+    align-items: center;*/
+    z-index: 999;
 }
 
-h3 {
-    color:chocolate;
+.header-image {
+/*    width: 940px;
+    height: 120px;
+    margin:auto;
+    padding: 10px;*/
+/*    background-image: url(../images/Leggingsheader.png);
+    background-size: contain;
+    background-repeat: no-repeat;*/
+    /*opacity: 0.7;*/
 }
 
 nav {
     background-color: #f2f2f2;
-    padding: 10px;
+    padding: 15px;
     text-align: center;
 }
     nav a {
@@ -38,81 +55,66 @@ nav {
     }
         nav a:hover {
             background-color: #333;
+            /*padding: 10px;*/
+            color: #fff;
+        }
+        nav a.active {
+            background-color: #333;
+            padding: 10px;
             color: #fff;
         }
 
-main {
-    padding: 20px;
-    background-color:antiquewhite;
+
+
+h1 {
+    /*text-align:left;*/
 }
 
-.product {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 20px;
+h2 {
+    color:darkcyan;
 }
 
-    .product img {
-        max-width: 100%;
-        height: auto;
-    }
-
-/*    .product input[type='number'] {
-        width: 80px;
-    }*/
-
-.cart-icon {
-    font-size: 24px;
+h3 {
+    color:chocolate;
+}
+.shop-page {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
-.cart {
-    background-color: #f2f2f2;
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    max-width: 960px;
+    background-color: #333;
+    color: #fff;
     padding: 20px;
-    text-align: right;
+    text-align: center;
+    font-size: 12px;
 }
 
-    .cart button {
-        background-color: #333;
+    footer a {
         color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
+        text-decoration: none;
+        margin: 0 10px;
     }
 
-.add-to-cart {
-    background-image: url(../images/shopping-cart.png)
+.cart-itemlist {
+    /*text-align:center;*/
+    vertical-align: top;
+    padding-left: 20px;
+    background-color: #f2f2f2;
 }
-
-.cart-items {
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-    .cart-items p {
-        margin: 5px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-        .cart-items p span {
-            margin-right: 10px;
-        }
-
-        .cart-items p button {
-            background-color: #c00;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
 
 .checkout {
     background-color: #f2f2f2;
-    padding: 20px;
+    padding: 5px;
     text-align: left;
+    width: 95%;
 }
 
     .checkout h2 {
@@ -121,16 +123,17 @@ main {
 
     .checkout label {
         display: block;
-        margin-bottom: 5px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        font-size: 14px;
     }
 
-    .checkout input {
-/*        break-after:column;*/
-    }
+    .checkout input,
     .checkout select {
-        width: 100%;
+        width: 80%;
+        height: 10px;
         padding: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
@@ -142,10 +145,28 @@ main {
         padding: 10px 20px;
         cursor: pointer;
     }
+
+.checkoutcol{
+    vertical-align: top;
+}
+
+.cart-totals {
+    width: 40%;
+    padding-top: 20px;
+    margin-left: 230px;
+}
+.t_price, .t_items, .t_wgtper, .t_wgt, .t_del, .t_all {
+    text-align: right;
+}
+
+.t_all {
+    font-weight: bold;
+}
 .payment {
-    background - color: #f2f2f2;
-    padding: 20px;
+    background-color: #f2f2f2;
+    padding: 5px;
     text-align: left;
+    width: 30%;
 }
 
     .payment h2 {
@@ -154,20 +175,27 @@ main {
 
     .payment label {
         display: block;
-        margin-bottom: 5px;
+        margin-top:10px;
+        margin-bottom: 0px;
+        font-size: 14px;
     }
 
     .payment input,
     .payment select {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
+        width: 80%;
+        padding: 0px;
+        margin-bottom: 0px;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
 
+#card-number, #expiration-date, #cvv {
+    height: 30px;
+    
+}
+
     .payment button {
-        background - color: #333;
+        background-color: #333;
         color: #fff;
         border: none;
         padding: 10px 20px;
