@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Simone's Boutique</title>
+    <link rel="icon" type="image/x-icon" href="ïmages/favicon.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+    <header>
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1>Simone's Boutique</h1>
+                </td>
+                <td class="cart-pic">
+                    <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
+                </td>
+                <td class="cart-status">
+                    <span class="cart-count">Items: 0</span>
+                    <br />
+                    <span class="total">Total: R 0 </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <nav>
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <button type="button" class="cart-btn" onclick="gotoCart()">Cart</button>
+                        <!--<a href="cart.html" class="cart-status">Cart</a>-->
+                        <a class="active" href="contact.html">Contact</a>
+                        <a href="FAQ.html">FAQ</a>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <div class="feedback">
+            <h2>Contact and Feedback</h2>
+            <form class="contact-email" id="feedback">
+                <table width="80%">
+                    <tr>
+                        <td width="12%">Name:</td>
+                        <td><input type="text" id="fbname" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>Order Ref:</td>
+                        <td><input type="text" id="fborder" name="order"></td>
+                    </tr>
+                    <tr>
+                        <td>Subject:</td>
+                        <td>
+                            <input type="text" id="fbsubject" name="subject">
+                            or select subject:
+                            <select id="subjectoptions" name="subopt">
+                                <option value="">Select subject line</option>
+                                <option value="info">Delivery options</option>
+                                <option value="delivery">Payment options</option>
+                                <option value="payment">Size options</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Detail:</td>
+                        <td><textarea style="width: 490px; height: 100px; border: 1px solid #ccc;" form="feedback" name="detail"></textarea></td>
+                    </tr>
+                </table>
+                <div style="margin-left: 90px">
+                    <button onclick="sendEmail(fbsubject.value,detail.value)">Send email</button>
+                </div>
+            </form>
+        </div>
+        <dialog class="modal" id="modal">
+            <p style="margin-top:auto">
+                <img class="cart-status" src="ïmages/shopping-cart-64.png">
+                No items added to the Cart yet
+            </p>
+            <button class="modalbutton">Close</button>
+        </dialog>
+    </main>
+
+    <footer>
+        <p><strong>Contact us:</strong></p>
+        <p><strong>Email:</strong> somewhere@gmail.com</p>
+        <p><strong>Tel (mobile & Whatsapp):</strong> 082-672-3452 (South Africa)<p>
+        <p><strong>Opening times:</strong> 08:00 to 20:00 (GMT +2)</p>
+        <p><strong>Address:</strong> Brackendown, Alberton, Gauteng, South Africa</p>
+        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
+    </footer>
+    <script src="js/common.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            const input2 = document.querySelector(".cart-count");
+            const input3 = document.querySelector(".total");
+            if (window.sessionStorage.getItem('inputValue1') != null) {
+                input2.innerHTML = window.sessionStorage.getItem('inputValue1');
+                input3.innerHTML = window.sessionStorage.getItem('inputValue2');
+            }
+            else {
+                window.sessionStorage.setItem('inputValue1', input2.innerHTML);
+                window.sessionStorage.setItem('inputValue2', input3.innerHTML);
+            }
+        });
+        // Function to send email
+        function sendEmail(subject, body) {
+            var recipient = 'cyberhome101@gmail.com';
+            var ccRecipient = 'cyberhome101@gmail.com';
+            //var subject = 'Subject Line for the Email';
+            //var body = 'This is the body of the email. You can include specific text here.';
+            var mailToLink = 'mailto:' + recipient + '?cc=' + ccRecipient + '&subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            window.location.href = mailToLink;
+        }
+    </script>
+</body>
+</html >

@@ -1,17 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Leggings Emporium</title>
+    <title>Simone's Boutique</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shop.css">
-    <!--<script src="js/main.js"></script>-->
 </head>
 <body>
     <header>
         <table width="100%">
             <tr>
                 <td>
-                    <h1>Leggings Emporium</h1>
+                    <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
                     <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
@@ -27,9 +26,10 @@
                     <nav>
                         <a href="index.html">Home</a>
                         <a class="active" href="shop.html">Shop</a>
-                        <a href="cart.html">Cart</a>
-                        <a href="#">Contact</a>
-                        <a href="#">FAQ</a>
+                        <button type="button" class="cart-btn" onclick="gotoCart()">Cart</button>
+                        <!--<a href="cart.html" class="cart-status">Cart</a>-->
+                        <a href="contact.html">Contact</a>
+                        <a href="FAQ.html">FAQ</a>
                     </nav>
                 </td>
             </tr>
@@ -53,6 +53,11 @@
         </div>
         <div class="image-grid" id="imageGrid"></div>
         <!--<div class="image-grid" id="imageGrid"></div>-->
+        <dialog class="modal" id="modal">
+            <p style="margin-top:auto"><img class="cart-status" src="ïmages/shopping-cart-64.png">
+            No items added to the Cart yet</p>
+            <button class="modalbutton">Close</button>
+        </dialog>
     </main>
     <script src="js/main.js"></script>
     <div class="cart">
@@ -63,12 +68,12 @@
         <p>Contact us:</p>
         <p>Email: somewhere@gmail.com</p>
         <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
+        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
         <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
-        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20"/></a>
-        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20"/></a>
-        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20"/></a>
+        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
     </footer>
-    <script>
-    </script>
+    <script src="js/common.js"></script>
 </body>
 </html>

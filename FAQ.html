@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Simone's Boutique</title>
+    <link rel="icon" type="image/x-icon" href="ïmages/favicon.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+    <header>
+        <table width="100%">
+            <tr>
+                <td>
+                    <h1>Simone's Boutique</h1>
+                </td>
+                <td class="cart-pic">
+                    <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
+                </td>
+                <td class="cart-status">
+                    <span class="cart-count">Items: 0</span>
+                    <br />
+                    <span class="total">Total: R 0 </span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <nav>
+                        <a href="index.html">Home</a>
+                        <a href="shop.html">Shop</a>
+                        <button type="button" class="cart-btn" onclick="gotoCart()">Cart</button>
+                        <!--<a href="cart.html" class="cart-status">Cart</a>-->
+                        <a href="contact.html">Contact</a>
+                        <a class="active" href="FAQ.html">FAQ</a>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+    </header>
+    <main>
+        <h2>FAQ</h2>
+
+        <p>Can I return if the size does not fit?</p>
+        <p class="reply">All items can be returned if still in their original condition and within 14 days of receipt for full refund or replacement
+        <p>Can I return an item if found to be damaged on unpacking?</p>
+        <p class="reply">All items can be returned if found to be damaged on receipt. Select alternative to replace or request refund including original delivery and the cost of return
+        <p>Can I return for wear and tear?</p>
+        <p class="reply">Only manufacturing defect is included if identified within 3 months of receipt. Wear and tear and improper use is excluded.
+        <p>How often are new leggings added to the catalogue?</p>
+        <p class="reply">At least once a month. More frequent based on re-stocking need
+        <p>Where do you buy your leggings from?</p>
+        <p class="reply">Many different sources
+        <p>What payment options are available?</p>
+        <p class="reply">Prefer immediate EFT otherwise delivery will be delayed until payment has been received
+        <p>What delivery options are available?</p>
+        <p class="reply">Prefer Pudo which will deliver to a drop off point.
+        <p>What is the delivery time based on?</p>
+        <p class="reply">Dependent on which service is used and the payment option plus receipt. Dispatch will occur when payment has been recieved.
+        <p>How is the delivery cost calculated?</p>
+        <p class="reply">Using Pudo there is a fixed charge based on size
+        <p>What material are the leggings made of?</p>
+        <p class="reply">Mainly polyester
+        <p>What sizes do you do?</p>
+        <p class="reply">
+        All leggings are one size fits all from TBA to TBA
+        <dialog class="modal" id="modal">
+            <p style="margin-top:auto">
+                <img class="cart-status" src="ïmages/shopping-cart-64.png">
+                No items added to the Cart yet
+            </p>
+            <button class="modalbutton">Close</button>
+        </dialog>
+</main>
+    <footer>
+        <p><strong>Contact us:</strong></p>
+        <p><strong>Email:</strong> somewhere@gmail.com</p>
+        <p><strong>Tel (mobile & Whatsapp):</strong> 082-672-3452 (South Africa)<p>
+        <p><strong>Opening times:</strong> 08:00 to 20:00 (GMT +2)</p>
+        <p><strong>Address:</strong> Brackendown, Alberton, Gauteng, South Africa</p>
+        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
+        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
+    </footer>
+    <script src="js/common.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            const input2 = document.querySelector(".cart-count");
+            const input3 = document.querySelector(".total");
+            if (window.sessionStorage.getItem('inputValue1') != null) {
+                input2.innerHTML = window.sessionStorage.getItem('inputValue1');
+                input3.innerHTML = window.sessionStorage.getItem('inputValue2');
+            }
+            else {
+                window.sessionStorage.setItem('inputValue1', input2.innerHTML);
+                window.sessionStorage.setItem('inputValue2', input3.innerHTML);
+            }
+        });
+    </script>
+</body>
+</html>

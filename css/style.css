@@ -1,5 +1,8 @@
 ﻿html {
-    background-color:lightgray;
+    background-color: white;
+    font-family:sans-serif;
+    /*font: Inter*/
+    /*1.2K Roboto 401 Poppins 678 Montserrat 156 Fira Sans Sans serif*/
 }
 body {
     /*position: relative;*/
@@ -14,34 +17,42 @@ main {
     margin-top: 165px;
     background-color: antiquewhite;
 }
+    main img {
+        border-radius: 10px;
+    }
 
 header {
     position: fixed;
     top: 0;
-/*    left: 10px;
-    max-width: 940px;*/
     width: 940px;
-    background-color: #333;
+    background-color: cadetblue;
     color: aliceblue;
     height: 140px;
     padding: 10px;
     display: flex;
-/*    justify-content: space-between;
-    justify-content: center;
-    align-items: center;*/
     z-index: 999;
-}
-
-.header-image {
-/*    width: 940px;
-    height: 120px;
-    margin:auto;
-    padding: 10px;*/
-/*    background-image: url(../images/Leggingsheader.png);
+/*    background-image: url(images/Leggingsheader.png);
     background-size: contain;
     background-repeat: no-repeat;*/
-    /*opacity: 0.7;*/
 }
+
+.cart-btn {
+    border: none;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*height:30px;*/
+    color: #333;
+    border-radius: 10px;
+}
+    .cart-btn:hover, .cart-btn:active {
+        background-color: #333;
+        color: #fff;
+        margin-top: -10px;
+        margin-bottom: -10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
 
 nav {
     background-color: #f2f2f2;
@@ -52,23 +63,26 @@ nav {
         color: #333;
         text-decoration: none;
         padding: 10px;
+        border-radius: 10px;
     }
         nav a:hover {
             background-color: #333;
-            /*padding: 10px;*/
+            padding: 10px;
             color: #fff;
+            border-radius: 10px;
         }
         nav a.active {
             background-color: #333;
             padding: 10px;
             color: #fff;
-        }
+            border-radius: 10px;
+            /*}
 
 
 
 h1 {
     /*text-align:left;*/
-}
+        }
 
 h2 {
     color:darkcyan;
@@ -78,21 +92,26 @@ h3 {
     color:chocolate;
 }
 .shop-page {
-    background-color: #333;
+    background-color: mediumseagreen;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
 }
+    .shop-page:hover {
+        color:yellow;
+    }
+
 
 footer {
     position: relative;
     bottom: 0;
     left: 0;
     max-width: 960px;
-    background-color: #333;
+    background-color: cadetblue;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     font-size: 12px;
 }
@@ -103,102 +122,39 @@ footer {
         margin: 0 10px;
     }
 
-.cart-itemlist {
-    /*text-align:center;*/
-    vertical-align: top;
-    padding-left: 20px;
-    background-color: #f2f2f2;
+
+
+.modal {
+    max-width: 200px;
+    & > * {
+    margin: 0 0 20px 0;
 }
 
-.checkout {
-    background-color: #f2f2f2;
-    padding: 5px;
-    text-align: left;
-    width: 95%;
+.modal::backdrop {
+    background: rgb(0 0 0 / 0.4);
 }
 
-    .checkout h2 {
-        margin-top: 0;
-    }
-
-    .checkout label {
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 0px;
-        font-size: 14px;
-    }
-
-    .checkout input,
-    .checkout select {
-        width: 80%;
-        height: 10px;
-        padding: 10px;
-        margin-bottom: 0px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .checkout button {
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-    }
-
-.checkoutcol{
-    vertical-align: top;
-}
-
-.cart-totals {
-    width: 40%;
-    padding-top: 20px;
-    margin-left: 230px;
-}
-.t_price, .t_items, .t_wgtper, .t_wgt, .t_del, .t_all {
-    text-align: right;
-}
-
-.t_all {
-    font-weight: bold;
-}
-.payment {
-    background-color: #f2f2f2;
-    padding: 5px;
-    text-align: left;
-    width: 30%;
-}
-
-    .payment h2 {
-        margin-top: 0;
-    }
-
-    .payment label {
-        display: block;
-        margin-top:10px;
-        margin-bottom: 0px;
-        font-size: 14px;
-    }
-
-    .payment input,
-    .payment select {
-        width: 80%;
-        padding: 0px;
-        margin-bottom: 0px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-#card-number, #expiration-date, #cvv {
+.modalbutton {
+    float:right;
     height: 30px;
-    
+    border: 0;
+    width: 80px;
+    cursor: pointer;
+    background: lightseagreen;
+    color: black;
+    font-weight: bold;
+    padding: 0px;
+    /*border: 1px solid #ccc;*/
+    border-radius: 4px;
+    margin-bottom: 0px
 }
 
-    .payment button {
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-    }
+.cart-status {
+    background-color:darkcyan;
+    float:left;
+    padding:10px;
+    margin-right:10px;
+}
+
+
 

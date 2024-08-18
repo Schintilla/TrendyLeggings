@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Leggings Emporium</title>
+    <title>Simone's Boutique</title>
     <link rel="icon" type="image/x-icon" href="ïmages/favicon.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shop.css">
@@ -11,7 +11,7 @@
         <table width="100%">
             <tr>
                 <td>
-                    <h1>Leggings Emporium</h1>
+                    <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
                     <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
@@ -27,9 +27,10 @@
                     <nav>
                         <a class="active" href="index.html">Home</a>
                         <a href="shop.html">Shop</a>
-                        <a href="cart.html">Cart</a>
-                        <a href="#">Contact</a>
-                        <a href="#">FAQ</a>
+                        <button type="button" class="cart-btn" onclick="gotoCart()">Cart</button>
+                        <!--<a href="cart.html" class="cart-status">Cart</a>-->
+                        <a href="contact.html">Contact</a>
+                        <a href="FAQ.html">FAQ</a>
                     </nav>
                 </td>
             </tr>
@@ -38,26 +39,28 @@
     <main>
         <h2>World of Leggings</h2>
         <table style="width: 100%">
-            <tr>
+            <tr style="vertical-align:top">
                 <td>
+                    <h3>Explore</h3>
+
                     Explore online the world of colourful and attractive leggings at
                     attractive prices.
                     <br /><br />
-                    More personal and better than ordering from the likes of Shein, Temu and Amazon
+                    More personal and a better experience than ordering from the likes of Shein, Temu and Amazon
                     <br><br>
                     <a href="shop.html"><button class="shop-page">Shop Now</button></a>
                     <br>
                 </td>
                 <td>
-                    <img alt="Leggings" src="ïmages/Picture2.jpg" height="400">
+                    <img alt="Leggings" src="ïmages/Leggings All.jpeg" height="350">
                 </td>
             </tr>
         </table>
-        <h2>Leggings available</h2>
+        <h2>Leggings Emporium</h2>
         <table style="width: 100%">
-            <tr>
+            <tr style="vertical-align:top">
                 <td>
-                    <img alt="Leggings" src="ïmages/Picture1.jpg" height="400">
+                    <img alt="Leggings" src="ïmages/Leggings Varius.jpeg" height="400">
                 </td>
                 <td>
                     <div class="leggings">
@@ -69,7 +72,7 @@
 
                         <h3>Sizes</h3>
 
-                        Sizes range from X-SMALL to XX-LARGE.
+                        Sizes range from one-size fits all to specific sizes from X-SMALL to X-LARGE.
 
                         X-SMALL	    6
                         SMALL	    8
@@ -77,7 +80,6 @@
                         LARGE	    12
                         X-LARGE	    14
                         XX-LARGE	16-18
-                        XXX-LARGE	18+
 
                         <h3>Waistband</h3>
 
@@ -90,9 +92,9 @@
                 </td>
             </tr>
         </table>
-        <h2>Shopping</h2>
+        <h2>Shopping Experience</h2>
         <table style="width: 100%">
-            <tr>
+            <tr style="vertical-align:top">
                 <td>
                     <div class="leggings">
                         <h3>Shop</h3>
@@ -115,20 +117,29 @@
                     <br>
                 </td>
                 <td>
-                    <img alt="Leggings" src="ïmages/Picture4.jpg" height="400">
+                    <img alt="Leggings" src="ïmages/Leggings Various3.jpeg" height="400">
                 </td>
             </tr>
         </table>
+        <dialog class="modal" id="modal">
+            <p style="margin-top:auto">
+                <img class="cart-status" src="ïmages/shopping-cart-64.png">
+                No items added to the Cart yet
+            </p>
+            <button class="modalbutton">Close</button>
+        </dialog>
     </main>
     <footer>
         <p>Contact us:</p>
         <p>Email: somewhere@gmail.com</p>
         <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
+        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
         <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
         <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
         <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
         <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
     </footer>
+    <script src="js/common.js"></script>
     <script defer>
         window.addEventListener('load', function () {
             const input2 = document.querySelector(".cart-count");
@@ -142,6 +153,9 @@
                 window.sessionStorage.setItem('inputValue2', input3.innerHTML);
             }
         });
+         
+
+
     </script>
 </body>
 </html>

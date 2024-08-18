@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Leggings Emporium</title>
+    <title>Simone's Boutique</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
     <header>
         <table width="100%">
             <tr>
                 <td>
-                    <h1>Leggings Emporium</h1>
+                    <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
                     <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
@@ -27,8 +28,8 @@
                         <a href="index.html">Home</a>
                         <a href="shop.html">Shop</a>
                         <a class="active" href="cart.html">Cart</a>
-                        <a href="#">Contact</a>
-                        <a href="#">FAQ</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="FAQ.html">FAQ</a>
                     </nav>
                 </td>
             </tr>
@@ -36,166 +37,176 @@
     </header>
 
     <main>
-        <div>
-            <h2>Shopping Cart Items and Delivery</h2>
+        <h2>Shopping Cart Checkout</h2>
+        <h3>Items in the Cart</h3>
+        <table width="60%" class="cart-itemlist">
+            <thead>
+                <tr>
+                    <th>Legging</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody id="table-body" align="center">
+            </tbody>
+        </table>
+        <div style="text-align:center">
+            <span>
+                <button onclick="updateList()" íd="updateCart" class="upCart">Update Cart</button>
+                <a href="shop.html"><button class="back-shop">Catalogue</button></a>
+            </span>
         </div>
-        <table width=100%>
+
+        <h3>Delivery and Payment Method</h3>
+        <table width="70%" class="del-payment">
             <tr>
-                <td width="30%" class="checkoutcol">
-                    <div class="checkout">
-                        <h3>Delivery details</h3>
-                        <form>
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address">
-                            <label for="city">City:</label>
-                            <input type="text" id="city" name="city">
-                            <label for="state">State/Province:</label>
-                            <input type="text" id="state" name="state">
-                            <label for="zip">Zip/Postal Code:</label>
-                            <input type="text" id="zip" name="zip">
-                            <label for="delivery">Delivery Option:</label>
-                            <select id="delivery" name="delivery" required>
-                                <option value="">Select delivery option</option>
-                                <option value="standard">Standard (3-5 business days)</option>
-                                <option value="expedited">Expedited (1-2 business days)</option>
-                                <option value="overnight">Overnight</option>
-                                <option value="colection">Collection</option>
-                            </select>
-                            <label for="payment">Payment Method:</label>
-                            <select id="payment" name="payment" required>
-                                <option value="">Select payment method</option>
-                                <option value="standard-EFT">Standard EFT</option>
-                                <option value="quick-EFT">Immediate EFT</option>
-                                <option value="credit-card">Credit/Debit Card</option>
-                                <option value="cash-on-delivery">Cash-on-Delivery</option>
-                                <option value="e-wallet">e-Wallet</option>
-                                <option value="paypal">PayPal</option>
-                            </select>
-                            <button type="submit">Place Order</button>
-                            <a href="index.html"><button type="button">Back</button></a>
-                        </form>
-                    </div>
+                <td width="50%">
+                    <h4>Delivery details<span><button class="but-del-pay" type="submit">Confirm</button></span></h4>
                 </td>
-                <td class="cart-itemlist">
-                    <h3>Items in the Cart</h3>
-                    <table class="cart-table" width="100%">
-                        <thead>
+                <td>
+                    <h4>Payment details<span><button class="but-del-pay" type="submit">Confirm</button></span></h4>
+                </td>
+            </tr>
+            <tr>
+                <td class="deliver-address">
+                    <form>
+                        <table>
                             <tr>
-                                <th>Legging</th>
-                                <th>SKU</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th>Select</th>
+                                <td>Delivery:</td>
+                                <td>
+                                    <select class="delform-option" id="delivery" name="delivery" required>
+                                        <option value="">Select delivery option</option>
+                                        <option value="standard">Standard (3-5 business days)</option>
+                                        <option value="expedited">Expedited (1-2 business days)</option>
+                                        <option value="overnight">Overnight</option>
+                                        <option value="colection">Collection</option>
+                                    </select>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="table-body" align="center">
-                        </tbody>
-                    </table>
-                    <table class="cart-totals">
-                        <thead>
-                            <tr><td>Total Price</td><td class="t_price">0</td></tr>
-                            <tr><td>No of Items</td><td class="t_items">0</td></tr>
-                            <tr><td>Weight per item (g)</td><td class="t_wgtper">0</td></tr>
-                            <tr><td>Total Weight (g)</td><td class="t_wgt">0</td></tr>
-                            <tr><td>Delivery cost</td><td class="t_del">0</td></tr>
-                            <tr><td style="font-weight: bold">Total Price with Delivery</td><td class="t_all">0</td></tr>
-                        </thead>
-                        <tbody id="table-body2" align="center">
-                        </tbody>
-                    </table>
+                            <tr>
+                                <td>Name:</td>
+                                <td><input class="delform" type="text" id="name" name="name"></td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td><input class="delform" type="email" id="email" name="email"></td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td><input class="delform" type="text" id="address" name="address"></td>
+                            </tr>
+                            <tr>
+                                <td>City:</td>
+                                <td><input class="delform-city" type="text" id="city" name="city"></td>
+                            </tr>
+                            <tr>
+                                <td>Province:</td>
+                                <td><input class="delform-city" type="text" id="state" name="state"></td>
+                            </tr>
+                            <tr>
+                                <td>Postal Code:</td>
+                                <td><input class="delform-code" type="text" id="zip" name="zip"></td>
+                            </tr>
+                        </table>
+
+                    </form>
+                </td>
+                <td class="payment">
+                    <form>
+                        <table>
+                            <tr>
+                                <td>Payment:</td>
+                                <td>
+                                    <select class="payment-options" id="payment" name="payment" required>
+                                        <option value="">Select payment method</option>
+                                        <option value="standard-EFT">Standard EFT</option>
+                                        <option value="quick-EFT">Immediate EFT</option>
+                                        <option value="credit-card">Credit/Debit Card</option>
+                                        <option value="cash-on-delivery">Cash-on-Delivery</option>
+                                        <option value="e-wallet">e-Wallet</option>
+                                        <option value="masterpass">Masterpass</option>
+                                        <option value="prepaid">Prepaid Card</option>
+                                        <option value="strip">Stripe</option>
+                                        <option value="paypal">PayPal</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Total amount:</td>
+                                <td><input class="cc-amt" type="text" id="card-amt" name="card-amt" required></td>
+                            </tr>
+                            <tr>
+                                <td>Card Number:</td>
+                                <td><input class="cc-number" type="text" id="card-number" name="card-number" required></td>
+                            </tr>
+                            <tr>
+                                <td>Expiration Date: </td>
+                                <td><input class="cc-date" type="text" id="expiration-date" name="expiration-date" required></td>
+                            </tr>
+                            <tr>
+                                <td>CVV:</td>
+                                <td><input class="cc-cvv" type="text" id="cvv" name="cvv" required></td>
+                            </tr>
+                        </table>
+                    </form>
                 </td>
             </tr>
         </table>
-
-
-        <br />
-        <div class="payment">
-            <h3>Payment details</h3>
-            <form>
-                <label for="card-number">Card Number:</label>
-                <input type="text" id="card-number" name="card-number" required>
-                <label for="expiration-date">Expiration Date:</label>
-                <input type="text" id="expiration-date" name="expiration-date" required>
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" required>
-                <button type="submit">Place Order</button>
-            </form>
+        <h3 style="margin-top: 10px; margin-bottom: 10px">Total Amount</h3>
+        <table class="cart-totals">
+            <thead style="vertical-align:top">
+                <tr class="firstTotRow">
+                    <td width="70%">Total Price (excl delivery)</td>
+                    <td class="t_price">0</td>
+                </tr>
+                <tr>
+                    <td>No of individual leggings</td>
+                    <td class="t_items">0</td>
+                </tr>
+                <tr>
+                    <td>Weight per Item (approx) (g)</td>
+                    <td class="t_wgtper">0</td>
+                </tr>
+                <tr>
+                    <td>Total Weight, incl packaging (g)</td>
+                    <td class="t_wgt">0</td>
+                </tr>
+                <tr>
+                    <td>Delivery charge (free above R500)</td>
+                    <td class="t_del">0</td>
+                </tr>
+                <tr class="lastTotRow">
+                    <td>Total Price with Delivery</td>
+                    <td class="t_all">0</td>
+                </tr>
+                <tr class="DeliveryRow">
+                    <td>Delivery based on method</td>
+                    <td class="t_all">10-15 days</td>
+                </tr>
+            </thead>
+            <tbody id="table-body2" align="center">
+            </tbody>
+        </table>
+        <div style="text-align:center">
+            <button type="submit" class="order">Place Order</button>
+            <button id="orderCSV">Download to CSV</button>
         </div>
     </main>
     <footer>
+        <!--<iframe src="[your unique google URL] " width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
         <p>Contact us:</p>
         <p>Email: somewhere@gmail.com</p>
         <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
+        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
         <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
         <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
         <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
         <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
     </footer>
-    <script>
-        window.addEventListener('load', function () {
-            const input2 = document.querySelector(".cart-count");
-            input2.innerHTML = window.sessionStorage.getItem('inputValue1');
-            const input3 = document.querySelector(".total");
-            input3.innerHTML = window.sessionStorage.getItem('inputValue2');
-            listSelected();
-        });
-
-        function listSelected() {
-            if (window.sessionStorage.getItem('cartDataTemp') != null) {
-                retJSON = window.sessionStorage.getItem('cartDataTemp')
-                cartData = JSON.parse(retJSON);
-                const tableBody = document.getElementById('table-body');
-                while (tableBody.firstChild) {
-                    tableBody.removeChild(tableBody.firstChild);
-                }
-                var totQ = 0;
-                var totP = 0;
-                cartData.forEach(item => {
-                    const newRow = document.createElement('tr');
-
-                    const newCell1 = document.createElement('td');
-                    var img = document.createElement('img');
-                    img.src = "ïmages/Leggings Red.jpeg";
-                    img.width = "30";
-                    newCell1.appendChild(img)
-                    newRow.appendChild(newCell1);
-
-                    const newCell2 = document.createElement('td');
-                    newCell2.textContent = item.name;
-                    newRow.appendChild(newCell2);
-
-                    const newCell3 = document.createElement('td');
-                    newCell3.textContent = item.quantity;
-                    newRow.appendChild(newCell3);
-
-                    const newCell4 = document.createElement('td');
-                    newCell4.textContent = item.price;
-                    newRow.appendChild(newCell4);
-
-                    const newCell5 = document.createElement('td');
-                    newCell5.textContent = item.quantity * item.price;
-                    newRow.appendChild(newCell5);
-
-                    const newCell6 = document.createElement('td');
-                    newCell6.textContent = "Y";
-                    newRow.appendChild(newCell6);
-                    totQ = totQ + parseInt(item.quantity);
-                    totP = totP + parseInt(item.price);
-                    tableBody.appendChild(newRow);
-                });
-                document.getElementsByClassName('t_price')[0].innerHTML = totP;
-                document.getElementsByClassName('t_items')[0].innerHTML = totQ;
-                document.getElementsByClassName('t_wgtper')[0].innerHTML = 10;
-                document.getElementsByClassName('t_wgt')[0].innerHTML = totQ * 10;
-                document.getElementsByClassName('t_del')[0].innerHTML = totQ * 10 * 5;
-                document.getElementsByClassName('t_all')[0].innerHTML = totP + totQ * 10 * 5;
-            }
-        }
-    </script>
+    <script src="js/cart.js"></script>
+  
 </body>
 </html>

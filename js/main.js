@@ -1,6 +1,7 @@
 ﻿const csvFileName = '../data/leggings stock.csv'; // Set the fixed CSV file name here
 let imageData = []; // Store the image data
 let currentSortOrder = 'high-to-low';
+let cartData = [];
 
 fetch(csvFileName)
     .then(response => response.text())
@@ -13,9 +14,6 @@ fetch(csvFileName)
         console.error('Error reading CSV file:', error);
     });
 
-//window.addEventListener('load', function () {
-//window.onload = function () {
-//document.addEventListener('DOMContentloaded', function () {
 function restoreData() {
     const input2 = document.querySelector(".cart-count");
     input2.innerHTML = window.sessionStorage.getItem('inputValue1');
@@ -27,7 +25,7 @@ function restoreData() {
         cartData.forEach(item => {
             const qty = document.getElementById(item.name);
             qty.value = item.quantity
-            const cartItemAmt = qty.parentElement.parentElement.children[7];
+            const cartItemAmt = qty.parentElement.parentElement.children[6];
             cartItemAmt.innerHTML="Cart: R " + item.price*item.quantity
         });
     }
@@ -61,19 +59,23 @@ function renderImages() {
         descriptionP.textContent = item.description;
         imageDiv.appendChild(descriptionP);
 
-        const additionalTextP = document.createElement('div');
-        additionalTextP.classList.add('additional-text');
-        additionalTextP.textContent = item.additionalText;
-        imageDiv.appendChild(additionalTextP);
-
         const sizeP = document.createElement('div');
         sizeP.classList.add('size');
         sizeP.textContent = "Size: " + item.size;
         imageDiv.appendChild(sizeP);
 
         const priceP = document.createElement('div');
-        priceP.classList.add('price');
-        priceP.textContent = "Price: R " + item.price.toFixed(0) + " Stock: " + item.stock;
+        // priceP.classList.add('price');
+        const priceS1 = document.createElement('span');
+        priceS1.classList.add('left');
+        priceS1.textContent = "R " + item.price.toFixed(0);
+        const priceS2 = document.createElement('span');
+        priceS2.classList.add('right');
+        priceS2.textContent = "Stock: " + item.stock;
+
+        priceP.appendChild(priceS1);
+        priceP.appendChild(priceS2);
+
         imageDiv.appendChild(priceP);
 
         const stockContainer = document.createElement('div');
@@ -81,13 +83,11 @@ function renderImages() {
 
         const inputQ = document.createElement('input');
         inputQ.setAttribute('type', 'number');
-        //inputQ.setAttribute('id', 'quantity1');
         inputQ.setAttribute('name', item.description);
         inputQ.setAttribute('id', item.description);
         inputQ.setAttribute('min', '0');
         inputQ.setAttribute('max', '999');
         inputQ.setAttribute('value', '1');
-        //inputQ.textContent = "Qty:";
         stockContainer.appendChild(inputQ);
 
         const maxbutton = document.createElement('button');
@@ -95,9 +95,7 @@ function renderImages() {
         maxbutton.setAttribute('name', item.description);
         maxbutton.textContent = 'Max';
         maxbutton.addEventListener('click', (e) => {
-            const qtyName = e.target.previousElementSibling.name;
-            // qty = parseInt(e.target.closest("div").parentElement.children[4].innerHTML.slice(-3, -1).trimStart(), 10);
-            qty = parseInt(e.target.parentElement.parentElement.children[4].innerHTML.substring(19).trimStart(), 10);
+            qty = parseInt(e.target.parentElement.parentElement.children[3].children[1].innerHTML.substring(6).trimStart(), 10);
             e.target.previousElementSibling.value = qty;
         });
         stockContainer.appendChild(maxbutton);
@@ -112,7 +110,7 @@ function renderImages() {
             const name = e.target.dataset.name;
             const index = cartData.findIndex(item => item.name === name);
             cartData.splice(index, 1);
-            const cartItemAmt = qty.parentElement.parentElement.children[7];
+            const cartItemAmt = qty.parentElement.parentElement.children[6];
             cartItemAmt.innerHTML = "Cart: R 0"
             updateCart();
         });
@@ -125,16 +123,19 @@ function renderImages() {
         button.setAttribute('name', item.description);
         button.textContent = 'Add to Cart';
         button.addEventListener('click', (e) => {
-            const price = e.target.parentElement.children[4].innerHTML.substring(8, 12).trimEnd();
+            const fileLink = e.target.parentElement.children[0].src;
+            var pos = fileLink.lastIndexOf("/");
+            const fileNm = fileLink.substring(pos);
+            const price = e.target.parentElement.children[3].children[0].innerHTML.substring(1).trimStart();
             const name = button.name;
-            const quantity = parseInt(e.target.parentElement.children[5].firstChild.value, 10);
+            const quantity = parseInt(e.target.parentElement.children[4].firstChild.value, 10);
             if (quantity > 0) {
-                const cartItem = { name, price, quantity };
+                const cartItem = { name, price, quantity, fileNm };
                 const existingItem = cartData.find(item => item.name === name);
                 if (existingItem) {
                     existingItem.quantity = quantity;
                 } else {
-                    e.target.parentElement.children[7].innerHTML = "Cart: R " + price * quantity
+                    e.target.parentElement.children[6].innerHTML = "Cart: R " + (price * quantity).toLocaleString();
                     cartData.push(cartItem);
                 }
                 updateCart();
@@ -144,7 +145,6 @@ function renderImages() {
 
         const cartamt = document.createElement('div');
         cartamt.classList.add('cart-amt');
-        //cartamt.setAttribute('id', item.description);
         cartamt.textContent = "Cart: R 0";
         imageDiv.appendChild(cartamt);
         
@@ -152,7 +152,7 @@ function renderImages() {
     });
 }
 
-let cartData = [];
+
 function updateCart() {
     let total = 0;
     const cartTotal = document.querySelector('.total');
@@ -161,28 +161,27 @@ function updateCart() {
     let cartItemCount = 0;
     cartItems.innerHTML = '';
     cartData.forEach(item => {
-        const cartItem = document.createElement('p');
-        cartItem.innerHTML = `
-                  <span>${item.quantity} x ${item.name} - R&nbsp${(item.price * item.quantity).toFixed(0)}</span>
-                  <button class="remove-from-cart" data-name="${item.name}">Remove</button>
-                `;
-        cartItem.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-from-cart')) {
-                const name = e.target.dataset.name;
-                const index = cartData.findIndex(item => item.name === name);
-                cartData.splice(index, 1);
-                const qty = document.getElementById(item.name);
-                qty.value = 1
-                const cartItemAmt = qty.parentElement.parentElement.children[7];
-                cartItemAmt.innerHTML = "Cart: R 0"
-                updateCart();
-            }
-        });
-        cartItems.appendChild(cartItem);
+        //const cartItem = document.createElement('p');
+        //cartItem.innerHTML = `
+        //          <span>${item.quantity} x ${item.name} - R&nbsp${(item.price * item.quantity).toFixed(0)}</span>
+        //          <button class="remove-from-cart" data-name="${item.name}">Remove</button>
+        //        `;
+        //cartItem.addEventListener('click', (e) => {
+        //    if (e.target.classList.contains('remove-from-cart')) {
+        //        const name = e.target.dataset.name;
+        //        const index = cartData.findIndex(item => item.name === name);
+        //        cartData.splice(index, 1);
+        //        const qty = document.getElementById(item.name);
+        //        qty.value = 1
+        //        const cartItemAmt = qty.parentElement.parentElement.children[6];
+        //        cartItemAmt.innerHTML = "Cart: R 0"
+        //        updateCart();
+        //    }
+        //});
+        //cartItems.appendChild(cartItem);
         total += item.price * item.quantity;
         cartItemCount += item.quantity;
     });
-    // cartTotal.textContent = `Total: R${total.toFixed(0)}`;
     cartTotal.textContent = "Total: R " + total.toFixed(0);
     cartCount.textContent = "Items: " + cartItemCount;
     window.sessionStorage.setItem('inputValue1', cartCount.textContent);
@@ -214,3 +213,7 @@ function updateSortButtonStyles() {
         sortLowToHighButton.classList.add('active');
     }
 }
+
+
+
+
