@@ -108,27 +108,6 @@ input[type='number'] {
         color: red;
     }
 
-@keyframes gradient {
-    0% {
-        background: radial-gradient(circle at center, rgba( 255, 125, 125, 0 ) 0%, #fff 0%, #fff 100%);
-    }
-    20% {
-        background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.3 ) 19%, #fff 20%, #fff 100%);
-    }
-    40% {
-        background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.4 ) 39%, #fff 40%, #fff 100%);
-    }
-    60% {
-        background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.6 ) 59%, #fff 60%, #fff 100%);
-    }
-    80% {
-        background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.8 ) 79%, #fff 80%, #fff 100%);
-    }
-    100% {
-        color: #fff;
-        background: radial-gradient(circle at center, #f88 99%, #fff 100%, #fff 100%);
-    }
-}
 
 .add-to-cart {
     /*background-image: url(../images/shopping-cart.png);*/
@@ -196,7 +175,6 @@ input[type='number'] {
     font-size: 24px;
     cursor: pointer;
 }
-
 
 .cart-count {
     color:yellow;

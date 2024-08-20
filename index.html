@@ -5,6 +5,48 @@
     <link rel="icon" type="image/x-icon" href="ïmages/favicon.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shop.css">
+    <style>
+        .conveyor-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .conveyor-belt {
+            width: 40%;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .conveyor-belt .images {
+                display: flex;
+                width: calc(100% * 10); /* 10 images in total for a seamless loop */
+                animation: scroll 7s linear infinite;
+            }
+
+                .conveyor-belt .images img {
+                    width: 10%; /* Set each image width to 20% of the conveyor belt */
+                    height: 30%; /* Set the height to 30% */
+                    object-fit: cover;
+                }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+            /* Move left by 50%, which is the width of 5 images */
+        }
+
+        .static-text {
+            width: 100px; /* Fixed width for the static text */
+            padding-left: 10px;
+            font-size: 16px;
+            /*color: #333;*/
+            /*white-space: nowrap;*/
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -57,41 +99,54 @@
             </tr>
         </table>
         <h2>Leggings Emporium</h2>
-        <table style="width: 100%">
-            <tr style="vertical-align:top">
-                <td>
-                    <img alt="Leggings" src="ïmages/Leggings Varius.jpeg" height="400">
-                </td>
-                <td>
-                    <div class="leggings">
-                        <h3>Fabric</h3>
+        <div class="conveyor-container">
+            <div class="conveyor-belt">
+                <div class="images">
+                    <img src="ïmages/girls1.png" alt="Slide 1">
+                    <img src="ïmages/girls2.png" alt="Slide 2">
+                    <img src="ïmages/girls3.png" alt="Slide 3">
+                    <img src="ïmages/girls4.png" alt="Slide 4">
+                    <img src="ïmages/girls5.png" alt="Slide 5">
+                    <img src="ïmages/girls1.png" alt="Slide 1"> <!-- Repeat the first image to create the loop effect -->
+                    <img src="ïmages/girls2.png" alt="Slide 2">
+                    <img src="ïmages/girls3.png" alt="Slide 3">
+                    <img src="ïmages/girls4.png" alt="Slide 4">
+                    <img src="ïmages/girls5.png" alt="Slide 5">
+                </div>
+            </div>
+            <div class="static-text">
+                <table width="500%">
+                    <tr>
+                        <td>
+                            <h3>Fabric</h3>
 
-                        Our leggings are a snug-fit to ensure secure and hassle free exercising.
-                        Our premium fabric is buttery soft yet provides support and full range of motions.
-                        Our leggings are squat-proof leaving you feeling confident and completely comfortable
+                            Our leggings are a snug-fit to ensure secure and hassle free exercising.
+                            Our premium fabric is buttery soft yet provides support and full range of motions.
+                            Our leggings are squat-proof leaving you feeling confident and completely comfortable
 
-                        <h3>Sizes</h3>
+                            <h3>Sizes</h3>
 
-                        Sizes range from one-size fits all to specific sizes from X-SMALL to X-LARGE.
+                            Sizes range from one-size fits all to specific sizes from X-SMALL to X-LARGE.
 
-                        X-SMALL	    6
-                        SMALL	    8
-                        MEDIUM	    10
-                        LARGE	    12
-                        X-LARGE	    14
-                        XX-LARGE	16-18
+                            X-SMALL	    6
+                            SMALL	    8
+                            MEDIUM	    10
+                            LARGE	    12
+                            X-LARGE	    14
+                            XX-LARGE	16-18
 
-                        <h3>Waistband</h3>
+                            <h3>Waistband</h3>
 
-                        High-waisted just reaches over the belly button.
-                        Mid-rise reaches just under the belly-button
-                    </div>
-                    <br>
-                    <a href="shop.html"><button class="shop-page">Shop Now</button></a>
-                    <br>
-                </td>
-            </tr>
-        </table>
+                            High-waisted just reaches over the belly button.
+                            Mid-rise reaches just under the belly-button
+                            <br />
+                            <a href="shop.html"><button class="shop-page">Shop Now</button></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
         <h2>Shopping Experience</h2>
         <table style="width: 100%">
             <tr style="vertical-align:top">
@@ -140,6 +195,7 @@
         <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
     </footer>
     <script src="js/common.js"></script>
+
     <script defer>
         window.addEventListener('load', function () {
             const input2 = document.querySelector(".cart-count");
@@ -153,9 +209,6 @@
                 window.sessionStorage.setItem('inputValue2', input3.innerHTML);
             }
         });
-         
-
-
     </script>
 </body>
 </html>

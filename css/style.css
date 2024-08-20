@@ -76,12 +76,6 @@ nav {
             padding: 10px;
             color: #fff;
             border-radius: 10px;
-            /*}
-
-
-
-h1 {
-    /*text-align:left;*/
         }
 
 h2 {
@@ -122,20 +116,19 @@ footer {
         margin: 0 10px;
     }
 
-
-
 .modal {
     max-width: 200px;
     & > * {
     margin: 0 0 20px 0;
 }
 
+
 .modal::backdrop {
     background: rgb(0 0 0 / 0.4);
 }
 
-.modalbutton {
-    float:right;
+.modalbutton, .modalbtn {
+    float: right;
     height: 30px;
     border: 0;
     width: 80px;
@@ -146,15 +139,20 @@ footer {
     padding: 0px;
     /*border: 1px solid #ccc;*/
     border-radius: 4px;
-    margin-bottom: 0px
+    margin-bottom: 0px;
 }
 
-.cart-status {
-    background-color:darkcyan;
+.cart-status1 {
+    /*background-color:darkcyan;*/
     float:left;
-    padding:10px;
+    /*padding:10px;*/
     margin-right:10px;
+    width:40px;
 }
-
-
-
+.cart-status2 {
+    /*background-color:darkcyan;*/
+    float: left;
+    /*padding:10px;*/
+    margin-right: 10px;
+    width: auto;
+}

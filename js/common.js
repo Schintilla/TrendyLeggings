@@ -12,3 +12,19 @@
         });
     }
 }
+function confirmMsg() {
+    const modal = document.querySelector("#modalMsg");
+    modal.showModal();
+    const closeModal = document.querySelector(".modalbutton");
+    closeModal.addEventListener("click", () => {
+        modal.close();
+    });
+}
+function confirmOrder() {
+    const modal = document.querySelector("#modalOrder");
+    modal.showModal();
+    const closeModal = document.querySelector(".modalbtn");
+    closeModal.addEventListener("click", () => {
+        modal.close();
+    });
+}

@@ -56,11 +56,12 @@
         <div style="text-align:center">
             <span>
                 <button onclick="updateList()" íd="updateCart" class="upCart">Update Cart</button>
-                <a href="shop.html"><button class="back-shop">Catalogue</button></a>
+                <a href="shop.html"><button class="back-shop">Continue Shopping</button></a>
+                <button onclick="confirmMsg()" class="order-next">Confirm List</button>
             </span>
         </div>
 
-        <h3>Delivery and Payment Method</h3>
+        <h3 style="margin-bottom:0px">Delivery and Payment Method</h3>
         <table width="70%" class="del-payment">
             <tr>
                 <td width="50%">
@@ -155,7 +156,7 @@
                 </td>
             </tr>
         </table>
-        <h3 style="margin-top: 10px; margin-bottom: 10px">Total Amount</h3>
+        <h3 style="margin-top: 10px; margin-bottom: 10px">Place Order</h3>
         <table class="cart-totals">
             <thead style="vertical-align:top">
                 <tr class="firstTotRow">
@@ -191,9 +192,23 @@
             </tbody>
         </table>
         <div style="text-align:center">
-            <button type="submit" class="order">Place Order</button>
+            <button onclick="confirmOrder()" class="order">Place Order</button>
             <button id="orderCSV">Download to CSV</button>
         </div>
+        <dialog class="modal" id="modalMsg">
+            <p style="margin-top:auto;margin-right:-10px">
+                <img class="cart-status1" src="ïmages/order-placed-purchased-icon.png">
+                Next move to Delivery and Payment options and then Place Order
+            </p>
+            <button class="modalbutton">Close</button>
+        </dialog>
+        <dialog class="modal" id="modalOrder">
+            <p style="margin-top:auto;margin-right:-10px">
+                <img class="cart-status2" src="ïmages/ordercreated.png">
+                Thank you. Order created. Check your email for details.
+            </p>
+            <button class="modalbtn">Close</button>
+        </dialog>
     </main>
     <footer>
         <!--<iframe src="[your unique google URL] " width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
@@ -207,6 +222,6 @@
         <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
     </footer>
     <script src="js/cart.js"></script>
-  
+    <script src="js/common.js"></script>
 </body>
 </html>

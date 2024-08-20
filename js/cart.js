@@ -121,7 +121,7 @@ function listSelected() {
         const totRow = document.createElement('tr');
         totRow.classList.add("total-row")
         totCol = document.createElement('td');
-        totCol.textContent = "Total";
+        totCol.textContent = "Total (less delivery)";
         totRow.appendChild(totCol);
         totCol = document.createElement('td');
         totRow.appendChild(totCol);
