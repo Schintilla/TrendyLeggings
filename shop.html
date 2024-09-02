@@ -13,7 +13,7 @@
                     <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
-                    <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
+                    <a href="cart.html"><img src="images/shopping-cart-64.png"></a>
                 </td>
                 <td class="cart-status">
                     <span class="cart-count">Items: 0</span>
@@ -27,7 +27,6 @@
                         <a href="index.html">Home</a>
                         <a class="active" href="shop.html">Shop</a>
                         <button type="button" class="cart-btn" onclick="gotoCart()">Cart</button>
-                        <!--<a href="cart.html" class="cart-status">Cart</a>-->
                         <a href="contact.html">Contact</a>
                         <a href="FAQ.html">FAQ</a>
                     </nav>
@@ -54,7 +53,7 @@
         <div class="image-grid" id="imageGrid"></div>
         <!--<div class="image-grid" id="imageGrid"></div>-->
         <dialog class="modal" id="modal">
-            <p style="margin-top:auto"><img class="cart-status" src="ïmages/shopping-cart-64.png">
+            <p style="margin-top:auto"><img class="cart-status0" src="images/cart-none.png">
             No items added to the Cart yet</p>
             <button class="modalbutton">Close</button>
         </dialog>
@@ -65,14 +64,23 @@
         </div>
     </div>
     <footer>
-        <p>Contact us:</p>
-        <p>Email: somewhere@gmail.com</p>
-        <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
-        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
-        <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
-        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
+        <div class="grid-container">
+            <div class="footer-area1">
+                <h4>Contact us:</h4>
+                <p>Email: somewhere@gmail.com</p>
+                <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)</p>
+                <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
+                <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
+            </div>
+            <div class="footer-area2">
+                <p></p>
+                <a href="#"><img src="images/facebook-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/instagram-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/whatsapp-xl.png" width="20" /></a>
+            </div>
+        </div>
     </footer>
     <script src="js/common.js"></script>
 </body>

@@ -27,11 +27,11 @@
     margin-bottom: 2px;
 }
 
-.additional-text {
+/*.additional-text {
     font-size: 12px;
     color: #888;
     margin-bottom: 0px;
-}
+}*/
 
 .size {
     font-size: 12px;
@@ -48,18 +48,6 @@
     justify-content: space-between;
 }
 
-.right {
-    float: right;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.left {
-    float: left;
-    font-size: 14px;
-    font-weight: bold;
-}
-
 .stock {
     font-size: 14px;
     font-weight: bold;
@@ -74,9 +62,22 @@ input {
     /*background-color: ButtonFace;*/
 }
 
-input[type='number'] {
-    width: 50px;
+    input[type='number'] {
+        width: 50px;
+    }
+
+.right {
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
 }
+
+.left {
+    float: left;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 .max-qty {
     margin-left: 2px;
@@ -139,7 +140,15 @@ input[type='number'] {
         max-width: 100%;
         height: 300px;
         margin-bottom: 10px;
+        transition: 0.5s ease;
     }
+
+.image-container img:hover {
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    transition: 0.5s ease;
+}
 
     .image-container p {
         margin: 5px 0;
@@ -148,41 +157,8 @@ input[type='number'] {
     .image-container button {
         margin-top: 5px;
     }
+
 .intro {
-    font-size: 14px;
-}
-.cart-status {
-    color: aqua;
-    text-align: left;
-    /*border: dotted;*/
-    width: 12%;
-}
-
-.cart-amt {
-    font-size: 12px;
-}
-
-.cart-pic {
-    text-align: right;
-    /*border:dotted;*/
-    width: 11%;
-}
-    .cart-pic img {
-        width: 36px;
-    }
-
-.cart-icon {
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.cart-count {
-    color:yellow;
-    font-size:14px;
-}
-
-.total {
-    color: yellow;
     font-size: 14px;
 }
 

@@ -1,4 +1,4 @@
-﻿const csvFileName = '../data/leggings stock.csv'; // Set the fixed CSV file name here
+﻿csvFileName = '/myCodes/data/leggings stock.csv'; // Set the fixed CSV file name here
 let imageData = []; // Store the image data
 let currentSortOrder = 'high-to-low';
 let cartData = [];
@@ -20,13 +20,13 @@ function restoreData() {
     const input3 = document.querySelector(".total");
     input3.innerHTML = window.sessionStorage.getItem('inputValue2');
     if (window.sessionStorage.getItem('cartDataTemp') != null) {
-        retJSON = window.sessionStorage.getItem('cartDataTemp')
+        retJSON = window.sessionStorage.getItem('cartDataTemp');
         cartData = JSON.parse(retJSON);
         cartData.forEach(item => {
             const qty = document.getElementById(item.name);
-            qty.value = item.quantity
+            qty.value = item.quantity;
             const cartItemAmt = qty.parentElement.parentElement.children[6];
-            cartItemAmt.innerHTML="Cart: R " + item.price*item.quantity
+            cartItemAmt.innerHTML="Cart: R " + item.price*item.quantity;
         });
     }
 }
@@ -105,13 +105,13 @@ function renderImages() {
         resetbutton.setAttribute('name', item.description);
         resetbutton.textContent = 'Reset';
         resetbutton.addEventListener('click', (e) => {
-            qty = e.target.parentElement.children[0]
+            qty = e.target.parentElement.children[0];
             qty.value = 1;
             const name = e.target.dataset.name;
             const index = cartData.findIndex(item => item.name === name);
             cartData.splice(index, 1);
             const cartItemAmt = qty.parentElement.parentElement.children[6];
-            cartItemAmt.innerHTML = "Cart: R 0"
+            cartItemAmt.innerHTML = "-";
             updateCart();
         });
         stockContainer.appendChild(resetbutton);
@@ -145,7 +145,7 @@ function renderImages() {
 
         const cartamt = document.createElement('div');
         cartamt.classList.add('cart-amt');
-        cartamt.textContent = "Cart: R 0";
+        cartamt.textContent = "-";
         imageDiv.appendChild(cartamt);
         
         imageGrid.appendChild(imageDiv);
@@ -186,7 +186,7 @@ function updateCart() {
     cartCount.textContent = "Items: " + cartItemCount;
     window.sessionStorage.setItem('inputValue1', cartCount.textContent);
     window.sessionStorage.setItem('inputValue2', cartTotal.textContent);
-    let cartJSON = JSON.stringify(cartData)
+    let cartJSON = JSON.stringify(cartData);
     window.sessionStorage.setItem('cartDataTemp', cartJSON);
 }
 function sortImages(order) {
@@ -214,6 +214,59 @@ function updateSortButtonStyles() {
     }
 }
 
+function matchAndModifyCSV(csvFile, arrayData) {
+    // Read the CSV file
+    fetch(csvFile)
+        .then(response => response.text())
+        .then(data => {
+            // Parse the CSV data into an array of rows
+            const rows = data.split('\n').map(row => row.split(','));
 
+            // Create a new array to store the modified rows
+            const modifiedRows = [];
+
+            // Iterate over each row in the CSV
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const column1Value = row[0];
+
+                // Find a matching row in the array data based on the 'name' property
+                const matchingRow = arrayData.find(arrayRow => arrayRow.name === column1Value);
+
+                // If a match is found, replace column 3 and add the row to the modified rows
+                if (matchingRow) {
+                    row[2] = matchingRow.quantity;
+                    modifiedRows.push(row);
+                }
+            }
+
+            // Convert the modified rows back into a CSV string
+            const modifiedCSV = modifiedRows.map(row => row.join(',')).join('\n');
+
+            // Download the modified CSV as a file
+            const blob = new Blob([modifiedCSV], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'modified_csv.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error reading CSV file:', error));
+}
+
+//// Replace 'your_csv_file.csv' with the actual path to your CSV file
+//const csvFile = 'your_csv_file.csv';
+
+//// Your array data
+//const arrayData = [
+//    { name: 'SKU: Leggings1', price: '199', quantity: 1, fileNm: '/Leggings%20Black.jpeg', spare: "" },
+//    { name: 'SKU: Leggings2', price: '299', quantity: 1, fileNm: '/Leggings%20Red.jpeg', spare: "" },
+//    { name: 'SKU: Leggings3', price: '149', quantity: 1, fileNm: '/Leggings1.jpeg', spare: "" }
+//];
+
+//// Call the function to perform the matching and modification
+//matchAndModifyCSV(csvFile, arrayData);
+//const csvFileName = '../data/leggings stock.csv';
 
 

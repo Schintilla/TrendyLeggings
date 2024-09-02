@@ -44,16 +44,16 @@ function updateCart() {
     total = 0;
     cartItemCount = 0;
     cartItems.innerHTML = '';
-    cartData.forEach(item => {
-        const cartItem = document.createElement('p');
-        cartItem.innerHTML = `
-                  <span>${item.quantity} x ${item.name} - R${(item.price * item.quantity).toFixed(0)}</span>
-                  <button class="remove-from-cart" data-name="${item.name}">Remove</button>
-                `;
-        cartItems.appendChild(cartItem);
-        total += item.price * item.quantity;
-        cartItemCount += item.quantity;
-    });
+//    cartData.forEach(item => {
+//        const cartItem = document.createElement('p');
+//        cartItem.innerHTML = `
+//                  <span>${item.quantity} x ${item.name} - R${(item.price * item.quantity).toFixed(0)}</span>
+//                  <button class="remove-from-cart" data-name="${item.name}">Remove</button>
+//                `;
+//        cartItems.appendChild(cartItem);
+//        total += item.price * item.quantity;
+//        cartItemCount += item.quantity;
+//    });
     cartTotal.textContent = `Total: R${total.toFixed(0)}`;
     cartCount.textContent = cartItemCount;
 }

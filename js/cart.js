@@ -1,7 +1,8 @@
 ﻿window.addEventListener('load', function () {
+//    'use strict'
     const input2 = document.querySelector(".cart-count");
-    input2.innerHTML = window.sessionStorage.getItem('inputValue1');
     const input3 = document.querySelector(".total");
+    input2.innerHTML = window.sessionStorage.getItem('inputValue1');
     input3.innerHTML = window.sessionStorage.getItem('inputValue2');
     listSelected();
 });
@@ -11,19 +12,27 @@ downloadButton.addEventListener('click', () => downloadCSV(cartData));
 
 function updateList() {
     if (window.sessionStorage.getItem('cartDataTemp') != null) {
-
+        const cartStatus = cartChanges();
+        if (cartStatus == false) {
+            const modal = document.querySelector("#modalNoChange");
+            modal.showModal();
+            const closeModal = document.querySelector(".modalbtn3");
+            closeModal.addEventListener("click", () => {
+                modal.close();
+            });
+            return;
+        }
         const carttable = document.querySelector('.cart-itemlist');
         const rows = Array.from(carttable.querySelector('tbody').querySelectorAll('tr')); // Convert NodeList to array
-
         // Update the price property in the array from the table
         var totQ = 0;
         var totP = 0;
         rows.forEach((row, rowIndex) => {
             if (rowIndex < rows.length-1) {
                 const cells = row.querySelectorAll('td');
-                const inputElement = cells[2].querySelector('input'); // Get the input element
+                const inputElement = cells[3].querySelector('input'); // Get the input element
                 cartData[rowIndex].quantity = inputElement.value; // Update the input value
-                cells[4].textContent = parseInt(inputElement.value) * cells[3].textContent;
+                cells[4].textContent = parseInt(inputElement.value) * cells[2].textContent;
             }
         });
         // Remove rows from the array and table based on checkbox state, skipping the header
@@ -36,12 +45,12 @@ function updateList() {
                 row.remove();
             }
             else {
-                const inputElement = cells[2].querySelector('input');
+                const inputElement = cells[3].querySelector('input');
                 totP = totP + parseInt(cells[4].textContent);
                 totQ = totQ + parseInt(inputElement.value);
             }
         }
-        rows[rows.length - 1].children[2].innerHTML = totQ;
+        rows[rows.length - 1].children[3].innerHTML = totQ;
         rows[rows.length - 1].children[4].innerHTML = totP;
 
         document.getElementsByClassName('t_price')[0].innerHTML = totP.toLocaleString();
@@ -53,7 +62,7 @@ function updateList() {
         document.querySelector(".cart-count").innerHTML = "Items: " + totQ;
         document.querySelector(".total").innerHTML = "Total: R " + totP.toLocaleString();
 
-        let cartJSON = JSON.stringify(cartData)
+        let cartJSON = JSON.stringify(cartData);
         window.sessionStorage.setItem('cartDataTemp', cartJSON);
 
         window.sessionStorage.setItem('inputValue1', "Items: " + totQ);
@@ -64,7 +73,7 @@ function updateList() {
 
 function listSelected() {
     if (window.sessionStorage.getItem('cartDataTemp') != null) {
-        retJSON = window.sessionStorage.getItem('cartDataTemp')
+        retJSON = window.sessionStorage.getItem('cartDataTemp');
         cartData = JSON.parse(retJSON);
         const tableBody = document.getElementById('table-body');
         while (tableBody.firstChild) {
@@ -78,14 +87,18 @@ function listSelected() {
             const newCell1 = document.createElement('td');
             newCell1.classList.add("zoom");
             var img = document.createElement('img');
-            img.src = "ïmages" + item.fileNm;
+            img.src = "images" + item.fileNm;
             img.width = "30";
-            newCell1.appendChild(img)
+            newCell1.appendChild(img);
             newRow.appendChild(newCell1);
 
             const newCell2 = document.createElement('td');
             newCell2.textContent = item.name;
             newRow.appendChild(newCell2);
+
+            const newCell4 = document.createElement('td');
+            newCell4.textContent = item.price;
+            newRow.appendChild(newCell4);
 
             const newCell3 = document.createElement('td');
             newInput = document.createElement('input');
@@ -97,10 +110,6 @@ function listSelected() {
             newInput.setAttribute('id', item.description);
             newCell3.appendChild(newInput);
             newRow.appendChild(newCell3);
-
-            const newCell4 = document.createElement('td');
-            newCell4.textContent = item.price;
-            newRow.appendChild(newCell4);
 
             const newCell5 = document.createElement('td');
             newCell5.textContent = item.quantity * item.price;
@@ -119,16 +128,16 @@ function listSelected() {
             tableBody.appendChild(newRow);
         });
         const totRow = document.createElement('tr');
-        totRow.classList.add("total-row")
+        totRow.classList.add("total-row");
         totCol = document.createElement('td');
         totCol.textContent = "Total (less delivery)";
         totRow.appendChild(totCol);
         totCol = document.createElement('td');
         totRow.appendChild(totCol);
         totCol = document.createElement('td');
-        totCol.textContent = totQ;
         totRow.appendChild(totCol);
         totCol = document.createElement('td');
+        totCol.textContent = totQ;
         totRow.appendChild(totCol);
         totCol = document.createElement('td');
         totCol.textContent = totP.toLocaleString();
@@ -149,21 +158,65 @@ function listSelected() {
 
 function downloadCSV(data) {
 
-    const csv = data.map(row => {
+    const csvData = data.map(row => {
         // Extract values from the object:
         const name = row.name;
         const price = row.price;
         const quantity = row.quantity;
         const fileNm = row.fileNm;
         // Join the values into a CSV row:
-        return [name, price, quantity, fileNm].join(',');
+        return [fileNm,name, price, quantity].join(',');
     }).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', 'my_data.csv');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    sendCSVData(csvData);
+    // const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    // const url = window.URL.createObjectURL(blob);
+    // const link = document.createElement('a');
+    // link.href = url;
+    // link.setAttribute('download', 'my_data.csv');
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
 }
+
+// const csvData = ["John Doe,john@example.com", "Jane Smith,jane@example.com"];
+// sendCSVData(csvData); // Call the function to send data
+
+function sendCSVData(csv) {
+    csv=csv.split('\n');
+    fetch('saveCSV.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'csv=' + encodeURIComponent(csv.join(';')) // Use a semicolon as a delimiter
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Handle success message
+    })
+    .catch((error) => {
+        console.error('Error:', error); // Handle error
+    });
+}
+
+function posttophp() {
+    document.getElementById('del-addr').submit();
+    document.getElementById('pmt-infor').submit();
+    $.ajax({
+        type : "POST",  //type of method
+        url  : "profile.php",  //your page
+        data : { name : name, email : email, password : password },// passing the values
+        success: function(res){  
+            //do what you want here...
+        }
+    });
+}
+
+async function postData() {
+    const res = await fetch('generate.php', {
+        method: 'POST',
+        body: new FormData(document.getElementById('form'))
+    });
+}
+
+

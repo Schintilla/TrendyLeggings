@@ -14,7 +14,7 @@
                     <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
-                    <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
+                    <a href="cart.html"><img src="images/shopping-cart-64.png"></a>
                 </td>
                 <td class="cart-status">
                     <span class="cart-count">Items: 0</span>
@@ -25,11 +25,11 @@
             <tr>
                 <td colspan="3">
                     <nav>
-                        <a href="index.html">Home</a>
-                        <a href="shop.html">Shop</a>
+                        <button type="button" class="cart-btn" onclick="checkCartMsg('index.html')">Home</button>
+                        <button type="button" class="cart-btn" onclick="checkCartMsg('shop.html')">Shop</button>
                         <a class="active" href="cart.html">Cart</a>
-                        <a href="contact.html">Contact</a>
-                        <a href="FAQ.html">FAQ</a>
+                        <button type="button" class="cart-btn" onclick="checkCartMsg('contact.html')">Contact</button>
+                        <button type="button" class="cart-btn" onclick="checkCartMsg('FAQ.html')">FAQ</button>
                     </nav>
                 </td>
             </tr>
@@ -41,11 +41,11 @@
         <h3>Items in the Cart</h3>
         <table width="60%" class="cart-itemlist">
             <thead>
-                <tr>
+                <tr style="border-bottom: 1px solid #ccc; height: 30px">
                     <th>Legging</th>
                     <th>SKU</th>
-                    <th>Qty</th>
                     <th>Price</th>
+                    <th>Qty</th>
                     <th>Total</th>
                     <th>Select</th>
                 </tr>
@@ -56,7 +56,7 @@
         <div style="text-align:center">
             <span>
                 <button onclick="updateList()" íd="updateCart" class="upCart">Update Cart</button>
-                <a href="shop.html"><button class="back-shop">Continue Shopping</button></a>
+                <button onclick="checkCartMsg('shop.html')" class="back-shop">Continue Shopping</button>
                 <button onclick="confirmMsg()" class="order-next">Confirm List</button>
             </span>
         </div>
@@ -65,91 +65,108 @@
         <table width="70%" class="del-payment">
             <tr>
                 <td width="50%">
-                    <h4>Delivery details<span><button class="but-del-pay" type="submit">Confirm</button></span></h4>
+                    <h4>Delivery details<span><button class="but-del-pay" type="submit" form="del-addr">Confirm</button></span></h4>
                 </td>
                 <td>
-                    <h4>Payment details<span><button class="but-del-pay" type="submit">Confirm</button></span></h4>
+                    <h4>Payment details<span><button class="but-del-pay" type="submit" form="pmt-info">Confirm</button></span></h4>
                 </td>
             </tr>
             <tr>
                 <td class="deliver-address">
-                    <form>
+                    <form id="del-addr" method="POST" action="generate.php">
                         <table>
                             <tr>
                                 <td>Delivery:</td>
                                 <td>
-                                    <select class="delform-option" id="delivery" name="delivery" required>
-                                        <option value="">Select delivery option</option>
-                                        <option value="standard">Standard (3-5 business days)</option>
-                                        <option value="expedited">Expedited (1-2 business days)</option>
-                                        <option value="overnight">Overnight</option>
-                                        <option value="colection">Collection</option>
-                                    </select>
+                                    
+                                    <input type="radio" id="standard" value="std" name="del" checked>
+                                    <label for="standard">Standard by Pudo</label>
+                                    <br>
+                                    <input type="radio" id="expedited" value="exp" name="del">
+                                    <label for="expedited">Expedited by Pudo</label>
+                                    <br>
+                                    <input type="radio" id="collection" value="collect" name="del">
+                                    <label for="collection">Collection</label>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Name:</td>
-                                <td><input class="delform" type="text" id="name" name="name"></td>
+                                <td><input class="delform" type="text" id="name" name="name" required></td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
-                                <td><input class="delform" type="email" id="email" name="email"></td>
+                                <td><input class="delform" type="email" id="email" name="email" required></td>
                             </tr>
                             <tr>
-                                <td>Address:</td>
-                                <td><input class="delform" type="text" id="address" name="address"></td>
+                                <td>Tel:</td>
+                                <td><input class="delform-tel" type="text" id="tel" name="tel" required></td>
+                            </tr>
+                            <tr>
+                                <td>Address1:</td>
+                                <td><input class="delform" type="text" id="address1" name="address1" required></td>
+                            </tr>
+                            <tr>
+                                <td>Address2:</td>
+                                <td><input class="delform" type="text" id="address2" name="address2"></td>
                             </tr>
                             <tr>
                                 <td>City:</td>
-                                <td><input class="delform-city" type="text" id="city" name="city"></td>
+                                <td><input class="delform-city" type="text" id="city" name="city" required></td>
                             </tr>
                             <tr>
                                 <td>Province:</td>
-                                <td><input class="delform-city" type="text" id="state" name="state"></td>
+                                <td><input class="delform-city" type="text" id="state" name="state" required></td>
                             </tr>
                             <tr>
                                 <td>Postal Code:</td>
-                                <td><input class="delform-code" type="text" id="zip" name="zip"></td>
+                                <td><input class="delform-code" type="text" id="zip" name="zip" required></td>
                             </tr>
                         </table>
-
-                    </form>
+                     </form>
                 </td>
                 <td class="payment">
-                    <form>
+                    <form id="pmt-info">
                         <table>
                             <tr>
                                 <td>Payment:</td>
                                 <td>
-                                    <select class="payment-options" id="payment" name="payment" required>
-                                        <option value="">Select payment method</option>
-                                        <option value="standard-EFT">Standard EFT</option>
-                                        <option value="quick-EFT">Immediate EFT</option>
-                                        <option value="credit-card">Credit/Debit Card</option>
-                                        <option value="cash-on-delivery">Cash-on-Delivery</option>
-                                        <option value="e-wallet">e-Wallet</option>
-                                        <option value="masterpass">Masterpass</option>
-                                        <option value="prepaid">Prepaid Card</option>
-                                        <option value="strip">Stripe</option>
-                                        <option value="paypal">PayPal</option>
-                                    </select>
+                                    <input type="radio" id="payshap" value="shap" name="pmt" checked>
+                                    <label for="payshap">PayShap (less than R3000)</label>
+                                    <br>
+                                    <input type="radio" id="eWallet" value="eW" name="pmt">
+                                    <label for="eWallet">eWallet</label>
+                                    <br>
+                                    <input type="radio" id="immediateEFT" value="imm" name="pmt">
+                                    <label for="immediateEFT">Immediate EFT</label>
+                                    <br>
+                                    <input type="radio" id="standardEFT" value="std" name="pmt">
+                                    <label for="standardEDT">Standard EFT</label>
+                                    <br>
+                                    <input type="radio" id="others" value="oth" name="pmt">
+                                    <label for="others">Others (Masterpass, Prepaid)</label>
+                                    <br> 
+                                    <input type="radio" id="card" value="cc" name="pmt">
+                                    <label for="card">Credit/Debit Card</label>
+                                    <img src="images/visa.png" width="20" style="vertical-align: middle">
+                                    <img src="images/mastercard.png" width="20" style="vertical-align: middle">
+
                                 </td>
                             </tr>
                             <tr>
                                 <td>Total amount:</td>
-                                <td><input class="cc-amt" type="text" id="card-amt" name="card-amt" required></td>
+                                <td><input class="cc-amt" type="text" id="card-amt" name="card-amt" ></td>
                             </tr>
                             <tr>
                                 <td>Card Number:</td>
-                                <td><input class="cc-number" type="text" id="card-number" name="card-number" required></td>
+                                <td><input class="cc-number" type="text" id="card-number" name="card-number" ></td>
                             </tr>
                             <tr>
-                                <td>Expiration Date: </td>
-                                <td><input class="cc-date" type="text" id="expiration-date" name="expiration-date" required></td>
+                                <td>Expiry Date: </td>
+                                <td><input class="cc-date" type="text" id="expiration-date" name="expiration-date" ></td>
                             </tr>
                             <tr>
                                 <td>CVV:</td>
-                                <td><input class="cc-cvv" type="text" id="cvv" name="cvv" required></td>
+                                <td><input class="cc-cvv" type="text" id="cvv" name="cvv" ></td>
                             </tr>
                         </table>
                     </form>
@@ -193,35 +210,66 @@
         </table>
         <div style="text-align:center">
             <button onclick="confirmOrder()" class="order">Place Order</button>
-            <button id="orderCSV">Download to CSV</button>
+            <button class="orderCSV" id="orderCSV">Download to CSV</button>
+            <form method="post" action="generate.php">
+                <button type="submit">HTML Page</button>
+            </form>
+            <form method="post" action="send-email.php">
+                <button type="submit">Send Email</button>
+            </form>
         </div>
         <dialog class="modal" id="modalMsg">
             <p style="margin-top:auto;margin-right:-10px">
-                <img class="cart-status1" src="ïmages/order-placed-purchased-icon.png">
+                <img class="cart-status1" src="images/cart-OK.png">
                 Next move to Delivery and Payment options and then Place Order
             </p>
             <button class="modalbutton">Close</button>
         </dialog>
         <dialog class="modal" id="modalOrder">
             <p style="margin-top:auto;margin-right:-10px">
-                <img class="cart-status2" src="ïmages/ordercreated.png">
+                <img class="cart-status2" src="images/ordercreated.png">
                 Thank you. Order created. Check your email for details.
             </p>
             <button class="modalbtn">Close</button>
         </dialog>
+        <dialog class="modal" id="modalCheckCart">
+            <p style="margin-top:auto;margin-right:-10px">
+                <img class="cart-status1" src="images/cart-query.png">
+                Cart has been changed. Update or cancel changes?
+            </p>
+            <button class="modalbtn2">Update</button>
+            <button class="modalbtn4">Cancel</button>
+        </dialog>
+        <dialog class="modal" id="modalNoChange">
+            <p style="margin-top:auto;margin-right:-10px">
+                <img class="cart-status1" src="images/cart-OK.png">
+                No changes made. Nothing to update
+            </p>
+            <button class="modalbtn3">Close</button>
+        </dialog>
     </main>
     <footer>
-        <!--<iframe src="[your unique google URL] " width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
-        <p>Contact us:</p>
-        <p>Email: somewhere@gmail.com</p>
-        <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
-        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
-        <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
-        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
+        <div class="grid-container">
+            <div class="footer-area1">
+                <h4>Contact us:</h4>
+                <p><span>Email:</span> somewhere@gmail.com</p>
+                <p><span>Tel (Mobile & Whatsapp):</span> 082-672-3452 (South Africa)</p>
+                <p><span>Opening times:</span> 08:00 to 20:00 (GMT +2)</p>
+                <p><span>Address:</span> Brackendown, Alberton, Gauteng, South Africa</p>
+            </div>
+            <div class="footer-area2">
+                <p></p>
+                <a href="#"><img src="images/facebook-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/instagram-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/whatsapp-xl.png" width="20" /></a>
+            </div>
+        </div>
     </footer>
-    <script src="js/cart.js"></script>
     <script src="js/common.js"></script>
+    <script src="js/cart.js"></script>
+
+
 </body>
 </html>

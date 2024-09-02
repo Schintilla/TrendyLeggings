@@ -1,5 +1,5 @@
 ﻿html {
-    background-color: white;
+    background-color: antiquewhite;
     font-family:sans-serif;
     /*font: Inter*/
     /*1.2K Roboto 401 Poppins 678 Montserrat 156 Fira Sans Sans serif*/
@@ -9,13 +9,16 @@ body {
     font-family: Arial, sans-serif;
     margin: auto;
     padding: 0;
-    max-width: 960px;
+/*    max-width: 960px;*/
 }
 
 main {
     padding: 10px;
-    margin-top: 165px;
+    margin-top: 170px;
     background-color: antiquewhite;
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
 }
     main img {
         border-radius: 10px;
@@ -24,46 +27,47 @@ main {
 header {
     position: fixed;
     top: 0;
-    width: 940px;
-    background-color: cadetblue;
+    width:1960px;
+    /*background-color: cadetblue;*/
     color: aliceblue;
     height: 140px;
     padding: 10px;
     display: flex;
     z-index: 999;
-/*    background-image: url(images/Leggingsheader.png);
-    background-size: contain;
-    background-repeat: no-repeat;*/
+    background-image: url(../images/glitter-pattern-colorfu2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
 }
 
-.cart-btn {
-    border: none;
-    font-size: 16px;
-    padding-left: 10px;
-    padding-right: 10px;
-    /*height:30px;*/
-    color: #333;
-    border-radius: 10px;
+.header-index, .header-cart .header-shop {
+    position:absolute;
 }
-    .cart-btn:hover, .cart-btn:active {
-        background-color: #333;
-        color: #fff;
-        margin-top: -10px;
-        margin-bottom: -10px;
-        padding: 10px;
-        border-radius: 10px;
-    }
+.header-contact, .header-FAQ {
+    position:fixed;
+}
+
+h2 {
+    color: darkcyan;
+}
+
+h3 {
+    color: chocolate;
+}
+
 
 nav {
     background-color: #f2f2f2;
     padding: 15px;
     text-align: center;
+    opacity: 60%;
 }
     nav a {
         color: #333;
         text-decoration: none;
         padding: 10px;
         border-radius: 10px;
+        font-weight: bold;
     }
         nav a:hover {
             background-color: #333;
@@ -78,13 +82,26 @@ nav {
             border-radius: 10px;
         }
 
-h2 {
-    color:darkcyan;
+.cart-btn {
+    border: none;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*height:30px;*/
+    color: #333;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
-h3 {
-    color:chocolate;
-}
+    .cart-btn:hover, .cart-btn:active {
+        background-color: #333;
+        color: #fff;
+        margin-top: -10px;
+        margin-bottom: -10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
 .shop-page {
     background-color: mediumseagreen;
     color: #fff;
@@ -92,43 +109,93 @@ h3 {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    margin-top:10px;
 }
     .shop-page:hover {
         color:yellow;
     }
 
+.cart-status {
+    color: aqua;
+    text-align: left;
+    /*border: dotted;*/
+    width: 11%;
+    padding-left:8px;
+}
+
+.cart-amt {
+    font-size: 12px;
+}
+
+.cart-pic {
+    text-align: right;
+    /*border:dotted;*/
+    width: 11%;
+}
+
+    .cart-pic img {
+        width: 36px;
+    }
+
+.cart-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.cart-count {
+    color: yellow;
+    font-size: 14px;
+}
+
+.total {
+    color: yellow;
+    font-size: 14px;
+}
 
 footer {
     position: relative;
     bottom: 0;
     left: 0;
-    max-width: 960px;
-    background-color: cadetblue;
+/*    max-width: 960px;*/
+    background-color: hotpink;
     color: #fff;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 12px;
+    line-height: 5px;
+    margin:auto;
 }
 
-    footer a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 10px;
-    }
-
-.modal {
-    max-width: 200px;
-    & > * {
-    margin: 0 0 20px 0;
+.footer-area1 {
+    grid-area: main;
+    padding-left: 200px;
 }
 
+.footer-area1 p span {
+    font-weight:bold;
+    color: yellow;
+}
+.footer-area2 {
+    grid-area: right;
+    text-align: left;
+}
+
+.grid-container {
+    display:grid;
+    grid-template-areas: 
+        'main right';
+}
+
+grid-container > div {
+    
+}
 
 .modal::backdrop {
     background: rgb(0 0 0 / 0.4);
 }
 
-.modalbutton, .modalbtn {
-    float: right;
+.modalbutton, .modalbtn, .modalbtn2, .modalbtn3, .modalbtn4{
+    float: none;
     height: 30px;
     border: 0;
     width: 80px;
@@ -140,6 +207,16 @@ footer {
     /*border: 1px solid #ccc;*/
     border-radius: 4px;
     margin-bottom: 0px;
+}
+ 
+    
+.cart-status0 {
+    /*background-color:darkcyan;*/
+    float: left;
+    /*padding-top:0px;*/
+    padding:0px;
+    margin-right: 10px;
+    width: 60px;
 }
 
 .cart-status1 {
@@ -155,4 +232,12 @@ footer {
     /*padding:10px;*/
     margin-right: 10px;
     width: auto;
+}
+
+.modal {
+    max-width: 200px;
+    border-radius:10px;
+    border-width:thin;
+    & > * {
+    margin: 0 0 20px 0;
 }

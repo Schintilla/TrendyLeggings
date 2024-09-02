@@ -47,7 +47,9 @@
     font-weight: bold;
 /*    border-top: medium;
     border-top-width: 2px;*/
-    border-top: 1px solid #888;
+    border-top: 1px solid #ccc;
+    height: 30px;
+    vertical-align: middle;
 }
 
 .cart-itemlist {
@@ -62,29 +64,45 @@
     margin-right: auto;
 }
 
+.zoom {
+    transition: transform .2s;
+}
+
+    .zoom:hover {
+        transform: scale(4); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+
 .cart-totals {
     font-size: 14px;
     width: 40%;
     padding-top: 0px;
     /*vertical-align: top;*/
     background-color: #f2f2f2;
-    border-collapse:separate;
+    border-collapse:collapse;
     /*color:blueviolet;*/
     /*margin-left: 10px;*/
     border-spacing: 7px;
     margin-left: auto;
     margin-right: auto;
+    color:grey;
+}
+.cart-totals tr {
+    height:25px;
 }
 
 .firstTotRow {
     font-weight: bold;
-    border-top: medium;
+    border-bottom: 1px solid #ccc;
+    color:black;
+    vertical-align: middle;
 }
 
 .lastTotRow {
-    border-top: 1px solid #888;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     font-weight: bold;
-    /*column-width:100px;*/
+    color:black;
+    vertical-align: middle;
 }
 
 .t_items, .t_wgtper, .t_wgt, .t_del {
@@ -192,6 +210,11 @@
     height: 20px;
 }
 
+.delform-tel {
+    width: 120px;
+    height: 20px;
+}
+
 .delform-code {
     width: 50px;
     height: 20px;
@@ -243,7 +266,7 @@
     }
 
 
-button[type='submit'], #orderCSV {
+button[type='submit'], .orderCSV {
     background-color: cadetblue;
     color: #fff;
     border: none;
@@ -254,34 +277,8 @@ button[type='submit'], #orderCSV {
     border-radius: 5px;
 }
 
-.reply {
-    font-size: 14px;
-    color: blue;
-    margin-right: 20px;
-}
 
-#detail {
-    height: 200px;
-    width: 500px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
 
-#subjectoptions {
-    height: 30px;
-    width: 155px;
-}
 
-.contact-email input {
-    width: 200px;
-    height: 25px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-.zoom {
-    transition: transform .2s;
-}
 
-    .zoom:hover {
-        transform: scale(4); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+

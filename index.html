@@ -2,10 +2,12 @@
 <html>
 <head>
     <title>Simone's Boutique</title>
-    <link rel="icon" type="image/x-icon" href="ïmages/favicon.jpg">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/shop.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.jpg">
+    <link rel="stylesheet" type ="text/css"  href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/shop.css">
+    <link rel="stylesheet" type="text/css" href="css/textimage_animation.css">
     <style>
+
         .conveyor-container {
             display: flex;
             align-items: center;
@@ -15,16 +17,20 @@
             width: 40%;
             overflow: hidden;
             position: relative;
+            transition: transform 0.5s ease;
         }
+        .conveyor-belt:hover{
+            cursor: pointer;
+        }  
 
             .conveyor-belt .images {
                 display: flex;
-                width: calc(100% * 10); /* 10 images in total for a seamless loop */
-                animation: scroll 7s linear infinite;
+                width: calc(100% * 12); /* 12 images in total for a seamless loop */
+                animation: scroll 10s linear infinite;
             }
 
                 .conveyor-belt .images img {
-                    width: 10%; /* Set each image width to 20% of the conveyor belt */
+                    width: 8%; /* Set each image width to 20% of the conveyor belt */
                     height: 30%; /* Set the height to 30% */
                     object-fit: cover;
                 }
@@ -34,9 +40,9 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%);
+                transform: translateX(-48%);
             }
-            /* Move left by 50%, which is the width of 5 images */
+            /* Move left by 48%, which is the width of 6 images */
         }
 
         .static-text {
@@ -49,19 +55,20 @@
     </style>
 </head>
 <body>
-    <header>
-        <table width="100%">
+    <header class="header-index">
+        <table width="100" style="border-collapse: collapse" >
             <tr>
                 <td>
                     <h1>Simone's Boutique</h1>
+<!--                    <p>(Leggings leggings leggings)</p>-->
                 </td>
                 <td class="cart-pic">
-                    <a href="cart.html"><img src="ïmages/shopping-cart-64.png"></a>
+                    <a href="cart.html"><img src="images/shopping-cart-64.png"></a>
                 </td>
                 <td class="cart-status">
                     <span class="cart-count">Items: 0</span>
                     <br />
-                    <span class="total">Total: R 0 </span>
+                    <span class="total">Total: R 0 </span>                    
                 </td>
             </tr>
             <tr>
@@ -83,18 +90,28 @@
         <table style="width: 100%">
             <tr style="vertical-align:top">
                 <td>
-                    <h3>Explore</h3>
-
-                    Explore online the world of colourful and attractive leggings at
-                    attractive prices.
-                    <br /><br />
-                    More personal and a better experience than ordering from the likes of Shein, Temu and Amazon
-                    <br><br>
-                    <a href="shop.html"><button class="shop-page">Shop Now</button></a>
-                    <br>
+                    <!--<h3>Explore</h3>-->
+                    <div class="grid">
+                        <figure class="effect-lily">
+                            <img src="images/Leggings%20All.jpeg" alt="img12"/>
+                            <figcaption>
+                                <div>
+                                    <h2>Explore the World of <span>Leggings</span></h2>
+                                    <p>Explore the online world of colourful, vividly patterned and strikingly attractive leggings at attractive prices.</p>
+                                    <p><br>
+                                    More personal and a better experience ordering locally than from Shein, Temu and Amazon
+                                    </p>
+                                </div>
+                                <a href="shop.html">View more</a>
+                            </figcaption>			
+                        </figure>
+                    </div>
+                    <div>
+<!--                        <a href="shop.html"><button class="shop-page">Shop Now</button></a>-->
+                    </div>
                 </td>
                 <td>
-                    <img alt="Leggings" src="ïmages/Leggings All.jpeg" height="350">
+<!--                <img alt="Leggings" src="images/Leggings All.jpeg" height="350">-->
                 </td>
             </tr>
         </table>
@@ -102,20 +119,22 @@
         <div class="conveyor-container">
             <div class="conveyor-belt">
                 <div class="images">
-                    <img src="ïmages/girls1.png" alt="Slide 1">
-                    <img src="ïmages/girls2.png" alt="Slide 2">
-                    <img src="ïmages/girls3.png" alt="Slide 3">
-                    <img src="ïmages/girls4.png" alt="Slide 4">
-                    <img src="ïmages/girls5.png" alt="Slide 5">
-                    <img src="ïmages/girls1.png" alt="Slide 1"> <!-- Repeat the first image to create the loop effect -->
-                    <img src="ïmages/girls2.png" alt="Slide 2">
-                    <img src="ïmages/girls3.png" alt="Slide 3">
-                    <img src="ïmages/girls4.png" alt="Slide 4">
-                    <img src="ïmages/girls5.png" alt="Slide 5">
+                    <img src="images/girls1.png" alt="Slide 1">
+                    <img src="images/girls2.png" alt="Slide 2">
+                    <img src="images/girls3.png" alt="Slide 3">
+                    <img src="images/girls4.png" alt="Slide 4">
+                    <img src="images/girls5.png" alt="Slide 5">
+                    <img src="images/girls6.jpeg" alt="Slide 6">
+                    <img src="images/girls1.png" alt="Slide 1"> <!-- Repeat the first image to create the loop effect -->
+                    <img src="images/girls2.png" alt="Slide 2">
+                    <img src="images/girls3.png" alt="Slide 3">
+                    <img src="images/girls4.png" alt="Slide 4">
+                    <img src="images/girls5.png" alt="Slide 5">
+                    <img src="images/girls6.jpeg" alt="Slide 6">
                 </div>
             </div>
             <div class="static-text">
-                <table width="500%">
+                <table width="550%">
                     <tr>
                         <td>
                             <h3>Fabric</h3>
@@ -165,37 +184,68 @@
                         <h3> Contact details and feedback</h3>
 
                         We welcome your feedback and you can call, email or send a message from this site
-
                     </div>
-                    <br>
+                    
                     <a href="shop.html"><button class="shop-page">Shop Now</button></a>
                     <br>
                 </td>
                 <td>
-                    <img alt="Leggings" src="ïmages/Leggings Various3.jpeg" height="400">
+                    <div class="grid">
+                        <figure class="effect-zoe">
+                            <img src="images/Leggings%20Various3.jpeg" width="800px" alt="img26"/>
+                            <figcaption>
+                                <h2>Creative <span>Leggings</span></h2>
+                                <p class="description">Leggings galore to suit all styles and tastes. All the colours of the rainbow. Something to match any top or ensemble</p>
+                            </figcaption>			
+                        </figure>
+				    </div>
+<!--                 <img alt="Leggings" src="images/Leggings Various3.jpeg" height="400">-->
                 </td>
             </tr>
         </table>
         <dialog class="modal" id="modal">
             <p style="margin-top:auto">
-                <img class="cart-status" src="ïmages/shopping-cart-64.png">
+                <img class="cart-status0" src="images/cart-none.png">
                 No items added to the Cart yet
             </p>
             <button class="modalbutton">Close</button>
         </dialog>
     </main>
     <footer>
-        <p>Contact us:</p>
-        <p>Email: somewhere@gmail.com</p>
-        <p>Tel (mobile & Whatsapp): 082-672-3452 (South Africa)<p>
-        <p>Opening times: 08:00 to 20:00 (GMT +2)</p>
-        <p>Address: Brackendown, Alberton, Gauteng, South Africa</p>
-        <a href="#"><img src="ïmages/facebook-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/instagram-3-xl.png" width="20" /></a>
-        <a href="#"><img src="ïmages/whatsapp-xl.png" width="20" /></a>
+        <div class="grid-container">
+            <div class="footer-area1">
+                <h4>Contact us:</h4>
+                <p><span>Email:</span> somewhere@gmail.com</p>
+                <p><span>Tel (Mobile & Whatsapp:</span> 082-672-3452 (South Africa)</p>
+                <p><span>Opening times:</span> 08:00 to 20:00 (GMT +2)</p>
+                <p><span>Address:</span> Brackendown, Alberton, Gauteng, South Africa</p>
+            </div>
+            <div class="footer-area2">
+                <p></p>
+                <a href="#"><img src="images/facebook-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/instagram-3-xl.png" width="20" /></a>
+                <br><br>
+                <a href="#"><img src="images/whatsapp-xl.png" width="20" /></a>
+            </div>
+        </div>
     </footer>
     <script src="js/common.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const conveyorBelt = document.querySelector('.conveyor-belt');
+            conveyorBelt.addEventListener('click', function() {
+                const scrollImg=document.querySelector('.images');
+                if (scrollImg.style.animationPlayState!='paused') {
+                    scrollImg.style.animationPlayState='paused';
+//                    conveyorBelt.style.animation = 'scroll 10s linear infinite';
+                } else {
+                    scrollImg.style.animationPlayState='running';
+                    // conveyorBelt.style.animation = 'none';
+                }
+            });
+        });
+    </script>
     <script defer>
         window.addEventListener('load', function () {
             const input2 = document.querySelector(".cart-count");
