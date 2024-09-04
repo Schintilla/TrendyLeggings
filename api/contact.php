@@ -1,4 +1,5 @@
 <?php
+    header("Content-Type: application/json");
     $confDisplay = 'display:none;';
     // if the url param exists, display confirmation
     if(isset($_GET["confirm"]) && $_GET["confirm"]==true){
