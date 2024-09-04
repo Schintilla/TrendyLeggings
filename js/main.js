@@ -35,7 +35,7 @@ function processCSV(csvData) {
     const rows = csvData.trim().split('\n');
     for (let i = 1; i < rows.length; i++) {
         const [filename, width, height, description, additionalText, priceStr, size, stock] = rows[i].split(',');
-        const price = parseFloat(priceStr.trim());
+        const price = priceStr;
         imageData.push({ filename, width, height, description, additionalText, price: isNaN(price) ? 0 : price, size, stock });
     }
 }
