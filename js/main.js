@@ -68,7 +68,7 @@ function renderImages() {
         // priceP.classList.add('price');
         const priceS1 = document.createElement('span');
         priceS1.classList.add('left');
-        priceS1.textContent = "R " + item.price.toFixed(0);
+        priceS1.textContent = "R " + item.price;
         const priceS2 = document.createElement('span');
         priceS2.classList.add('right');
         priceS2.textContent = "Stock: " + item.stock;
