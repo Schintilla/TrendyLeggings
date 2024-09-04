@@ -15,7 +15,6 @@ function gotoCart() {
     }
 }
 
-
 function confirmMsg() {
     let cartStatus = cartChanges();
     if (cartStatus == true) {
@@ -28,6 +27,7 @@ function confirmMsg() {
         modal.close();
     });
 }
+
 function confirmOrder() {
     const modal = document.querySelector("#modalOrder");
     modal.showModal();
@@ -36,6 +36,7 @@ function confirmOrder() {
         modal.close();
     });
 }
+
 function checkCartMsg(pageSelect) {
     let cartStatus=cartChanges();
     if (cartStatus == true) {
@@ -57,6 +58,8 @@ function checkCartMsg(pageSelect) {
         window.location.href = pageSelect;
     }
 }
+
+
 
 function cartChanges() {
     const carttable = document.querySelector('.cart-itemlist');

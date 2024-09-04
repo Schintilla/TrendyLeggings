@@ -1,4 +1,3 @@
-﻿<!--
 <?php
     $confDisplay = 'display:none;';
     // if the url param exists, display confirmation
@@ -6,7 +5,7 @@
         $confDisplay = 'display:inline;';
     }
 ?>
--->
+
 <!DOCTYPE html>
 <html>
 
@@ -33,15 +32,17 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+        #btn:hover {
+            color:blue;
+        }
+        #btn:focus {
+            color:red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-<!--    <?php require 'feedback-email.php'?>-->
-<!--
-    <div style="<?php echo $confDisplay; ?>">
-        Your form has been submitted!
-    </div>
--->
+
     <header class="header-index">
         <table class="title">
             <tr>
@@ -72,6 +73,13 @@
         </table>
     </header>
     <main>
+        <dialog class="modal" id="modalMsg">
+            <p style="margin-top:auto">
+                <img class="cart-status0" src="images/email-sent-icon.jpg">
+                Feedback sent successfully
+            </p>
+            <button class="modalbutton">Close</button>
+        </dialog>
         <div class="feedback">
             <h2>Contact and Feedback</h2>
             <form class="contact-email" id="feedback" method="post" action="feedback-email.php">
@@ -110,9 +118,24 @@
                     <!--<button onclick="sendEmail(fbsubject.value,detail.value)">Send email</button>-->
                     <input id="btn" type="submit" name="" value="Send Email">
 <!--                    <button>Send email</button>-->
+                    <div style="<?php echo $confDisplay; ?> color: red; font-size:14px">
+<!--                            <em>Message was sent successfully</em>-->
+                            <script>
+                                var sent='<?php echo $confDisplay; ?>';
+                                if (sent=="display:inline;") {
+                                    const dlg=document.querySelector('#modalMsg');
+                                    dlg.showModal();
+                                    const closeModal = document.querySelector(".modalbutton");
+                                    closeModal.addEventListener("click", () => {
+                                        dlg.close();
+                                    });
+                                 }
+                            </script>
+                    </div>
                 </div>
             </form>
         </div>
+
         <dialog class="modal" id="modal">
             <p style="margin-top:auto">
                 <img class="cart-status0" src="images/cart-none.png">

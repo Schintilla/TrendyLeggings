@@ -182,7 +182,7 @@ function updateCart() {
         total += item.price * item.quantity;
         cartItemCount += item.quantity;
     });
-    cartTotal.textContent = "Total: R " + total.toFixed(0);
+    cartTotal.textContent = "Total: R " + total.toLocaleString();
     cartCount.textContent = "Items: " + cartItemCount;
     window.sessionStorage.setItem('inputValue1', cartCount.textContent);
     window.sessionStorage.setItem('inputValue2', cartTotal.textContent);

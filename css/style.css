@@ -27,12 +27,12 @@ main {
 header {
     position: fixed;
     top: 0;
-    width:1960px;
+    width:100%;
     /*background-color: cadetblue;*/
     color: aliceblue;
     height: 140px;
     padding: 10px;
-    display: flex;
+/*    display: flex;*/
     z-index: 999;
     background-image: url(../images/glitter-pattern-colorfu2.png);
     background-repeat: no-repeat;
@@ -43,8 +43,16 @@ header {
 .header-index, .header-cart .header-shop {
     position:absolute;
 }
+
 .header-contact, .header-FAQ {
     position:fixed;
+}
+
+.title {
+    margin-left:auto;
+    margin-right: auto;
+    max-width:960px;
+    border-collapse: collapse;    
 }
 
 h2 {
@@ -115,23 +123,25 @@ nav {
         color:yellow;
     }
 
+.cart-pic {
+    text-align: right;
+    /*border:dotted;*/
+    width: 11%;
+}
+
 .cart-status {
     color: aqua;
     text-align: left;
     /*border: dotted;*/
-    width: 11%;
+    width: 15%;
     padding-left:8px;
+    white-space: nowrap;
 }
 
 .cart-amt {
     font-size: 12px;
 }
 
-.cart-pic {
-    text-align: right;
-    /*border:dotted;*/
-    width: 11%;
-}
 
     .cart-pic img {
         width: 36px;

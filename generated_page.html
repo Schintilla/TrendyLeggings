@@ -1,35 +1,4 @@
-<?php
-// Path to the CSV file
-$name=$_POST['name'];
-$email=$_POST['email'];
-$tel=$_POST['tel'];
-$address1=$_POST['address1'];
-$address2=$_POST['address2'];
-$city=$_POST['city'];
-$province=$_POST['state'];
-$pcode=$_POST['zip'];
-// $tot1=$_POST('total1');
-// $tot2=$_POST('total2');
-// $radpmt=$_POST['pmt']; //shap, eW, imm, eft, oth, cc
-// $raddel=$_POST['del']; //pudo, paxi, postN, collect
 
-//if (radpmt=="imm") {  
-//}
-
-$csvFile = 'data.csv';
-
-// Initialize an empty array for the data
-$data = [];
-
-// Read the CSV file
-if (($handle = fopen($csvFile, 'r')) !== false) {
-    while (($row = fgetcsv($handle)) !== false) {
-        $data[] = $row; // Add each row to the data array
-    }
-    fclose($handle);
-}
-// Create HTML content with two tables
-$htmlContent = '
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +19,7 @@ $htmlContent = '
         }
         .firstTotRow {
             font-weight: bold;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;  
             color:black;
             vertical-align: middle;
         }
@@ -88,7 +57,7 @@ $htmlContent = '
     </script>
 </head>
 <body>
-    <h2 style="text-align: center; background-color:hotpink; padding:10px; color:yellow">Your Order with Simone\'s Boutique</h2>
+    <h2 style="text-align: center; background-color:hotpink; padding:10px; color:yellow">Your Order with Simone's Boutique</h2>
         Dear Valued Client,
         <br><br>
         Thank you for the order as confirmed below. Please send full payment and proof of payment as instructed below. Please ensure the exact amount is paid. We will proceed with the delivery as soon as the payment has been received. Note there is a payment clearing time of 1-2 working days for standard EFT.
@@ -113,63 +82,15 @@ $htmlContent = '
                     <th>Subtotal</th>
                 </tr>
             </thead>        
-        <tbody>';
-$imgArray = [];
-$j=0;
-foreach ($data as $row) {
-    $htmlContent .= '<tr>';
-    $i=0;
-    foreach ($row as $cell) {
-        if ($i==2) {
-            $qty=$cell;
-        }
-        if ($i==3) {
-            $price=$cell;
-        }
-        if ($i==0) {
-            // img src="cid:image_cid"
-            $htmlContent .= '<td><img src="cid:image_cid' . $j . '" width="40"></td>';
-            $imgArray[$j]=$cell;
-        }
-        else {
-            $htmlContent .= '<td>' . $cell . '</td>';    
-        }
-        $i=$i+1;
-    }
-    $j=$j+1;
-    $htmlContent .= '<td>' . $qty*$price . '</td>';
-    $htmlContent .= '</tr>';
-}
-
-$htmlContent .= '
+        <tbody><tr><td><img src="cid:image_cid0" width="40"></td><td>SKU: Leggings2</td><td>299</td><td>1</td><td>299</td></tr><tr><td><img src="cid:image_cid1" width="40"></td><td>SKU: Leggings3</td><td>149</td><td>5</td><td>745</td></tr><tr><td><img src="cid:image_cid2" width="40"></td><td>SKU: Leggings1</td><td>199</td><td>1</td><td>199</td></tr><tr><td><img src="cid:image_cid3" width="40"></td><td>SKU: Leggings5</td><td>199</td><td>1</td><td>199</td></tr><tr><td><img src="cid:image_cid4" width="40"></td><td>SKU: Leggings6</td><td>299</td><td>1</td><td>299</td></tr><tr><td><img src="cid:image_cid5" width="40"></td><td>SKU: Leggings7</td><td>199</td><td>1</td><td>199</td></tr><tr><td><img src="cid:image_cid6" width="40"></td><td>SKU: Leggings8</td><td>299</td><td>1</td><td>299</td></tr>
         </tbody>
     </table>
-    <hr>';
-
-$currentDate = date('D, d-M-Y');
-$totamt="R 1,200";
-$htmlContent .= '<div style="text-align: center"><strong>The order was received on </strong>';
-$htmlContent .= '<p style="color: blue"><strong>' . $currentDate . '</strong></p>';
-$htmlContent .= '<p><strong>The total amount including delivery is </strong></p>';
-$htmlContent .= '<p style="font-weight: bold; color: blue; font-size: 24px; margin:0px">' . $totamt . '</p></div><br>';
-
-$htmlContent .= '
+    <hr><div style="text-align: center"><strong>The order was received on </strong><p style="color: blue"><strong>Wed, 04-Sep-2024</strong></p><p><strong>The total amount including delivery is </strong></p><p style="font-weight: bold; color: blue; font-size: 24px; margin:0px">R 1,200</p></div><br>
     <hr>
     <h3>Delivery and Billing</h3>
     <p style="margin-left:50px">Delivery by Pudo. Pick-up point to be agreed</p>
     <h3>Your details:</h3>
-    <table width=100% style="margin-left:50px">';
-    
-$htmlContent .= '<tr><td style="width: 200px"><strong>Name:</strong></td><td>' . $name . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Email:</strong></td><td>' . $email . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Tel:</strong></td><td>' . $tel . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Address1:</strong></td><td>' . $address1 . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Address2:</strong></td><td>' . $address2 . '</td></tr>';
-$htmlContent .= '<tr><td><strong>City:</strong></td><td>' . $city . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Province:</strong></td><td>' . $province . '</td></tr>';
-$htmlContent .= '<tr><td><strong>Postal Code:</strong></td><td>' . $pcode . '</td></tr>';
-
-$htmlContent .= '
+    <table width=100% style="margin-left:50px"><tr><td style="width: 200px"><strong>Name:</strong></td><td></td></tr><tr><td><strong>Email:</strong></td><td></td></tr><tr><td><strong>Tel:</strong></td><td></td></tr><tr><td><strong>Address1:</strong></td><td></td></tr><tr><td><strong>Address2:</strong></td><td></td></tr><tr><td><strong>City:</strong></td><td></td></tr><tr><td><strong>Province:</strong></td><td></td></tr><tr><td><strong>Postal Code:</strong></td><td></td></tr>
     </table>
     <hr>
     <h3>Payment to be made</h3>        
@@ -251,11 +172,4 @@ $htmlContent .= '
         </div>
     </footer>
 </body>
-</html>';
-
-// Save the HTML content to a file
-$filePath = 'generated_page.html'; // Save in the same directory as index.php
-file_put_contents($filePath, $htmlContent);
-
-echo "HTML page has been generated and saved as <a href=\"$filePath\">$filePath</a>.";
-// header("Location: cart.html");
+</html>

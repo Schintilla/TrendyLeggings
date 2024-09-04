@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-    <header>
-        <table width="100%">
+    <header class="header-index">
+        <table class="title">
             <tr>
-                <td>
+                <td width="100%">
                     <h1>Simone's Boutique</h1>
                 </td>
                 <td class="cart-pic">
@@ -28,7 +28,7 @@
                         <button type="button" class="cart-btn" onclick="checkCartMsg('index.html')">Home</button>
                         <button type="button" class="cart-btn" onclick="checkCartMsg('shop.html')">Shop</button>
                         <a class="active" href="cart.html">Cart</a>
-                        <button type="button" class="cart-btn" onclick="checkCartMsg('contact.html')">Contact</button>
+                        <button type="button" class="cart-btn" onclick="checkCartMsg('contact.php')">Contact</button>
                         <button type="button" class="cart-btn" onclick="checkCartMsg('FAQ.html')">FAQ</button>
                     </nav>
                 </td>
@@ -65,10 +65,10 @@
         <table width="70%" class="del-payment">
             <tr>
                 <td width="50%">
-                    <h4>Delivery details<span><button class="but-del-pay" type="submit" form="del-addr">Confirm</button></span></h4>
+                    <h4>Delivery details</h4>
                 </td>
                 <td>
-                    <h4>Payment details<span><button class="but-del-pay" type="submit" form="pmt-info">Confirm</button></span></h4>
+                    <h4>Payment details</h4>
                 </td>
             </tr>
             <tr>
@@ -78,12 +78,14 @@
                             <tr>
                                 <td>Delivery:</td>
                                 <td>
-                                    
-                                    <input type="radio" id="standard" value="std" name="del" checked>
-                                    <label for="standard">Standard by Pudo</label>
+                                    <input type="radio" id="pudo" value="paxi" name="del" checked>
+                                    <label for="standard">Pudo Locker to Locker</label>
                                     <br>
-                                    <input type="radio" id="expedited" value="exp" name="del">
-                                    <label for="expedited">Expedited by Pudo</label>
+                                    <input type="radio" id="paxi" value="paxi" name="del">
+                                    <label for="expedited">Paxi to PEP Store</label>
+                                    <br>
+                                    <input type="radio" id="postN" value="postN" name="del">
+                                    <label for="expedited">Postnet to Postnet</label>
                                     <br>
                                     <input type="radio" id="collection" value="collect" name="del">
                                     <label for="collection">Collection</label>
@@ -131,16 +133,19 @@
                                 <td>Payment:</td>
                                 <td>
                                     <input type="radio" id="payshap" value="shap" name="pmt" checked>
-                                    <label for="payshap">PayShap (less than R3000)</label>
+                                    <label for="payshap">PayShap (up to R3000)<sup>*</sup></label>
+                                    <img src="images/PayShap.jpg" width="20" style="vertical-align: middle">
                                     <br>
                                     <input type="radio" id="eWallet" value="eW" name="pmt">
                                     <label for="eWallet">eWallet</label>
                                     <br>
                                     <input type="radio" id="immediateEFT" value="imm" name="pmt">
-                                    <label for="immediateEFT">Immediate EFT</label>
+                                    <label for="immediateEFT">Immediate EFT<sup>*</sup></label>
+                                    <img src="images/EFTFast.png" width="30" style="vertical-align: middle">
                                     <br>
                                     <input type="radio" id="standardEFT" value="std" name="pmt">
-                                    <label for="standardEDT">Standard EFT</label>
+                                    <label for="standardEDT">Standard EFT<sup>*</sup></label>
+                                    <img src="images/EFT.PNG" width="25" style="vertical-align: middle">
                                     <br>
                                     <input type="radio" id="others" value="oth" name="pmt">
                                     <label for="others">Others (Masterpass, Prepaid)</label>
@@ -153,20 +158,30 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Total amount:</td>
+                                <td>Amount:</td>
                                 <td><input class="cc-amt" type="text" id="card-amt" name="card-amt" ></td>
                             </tr>
                             <tr>
-                                <td>Card Number:</td>
+                                <td>Card No:</td>
                                 <td><input class="cc-number" type="text" id="card-number" name="card-number" ></td>
                             </tr>
                             <tr>
-                                <td>Expiry Date: </td>
+                                <td>Expiry: </td>
                                 <td><input class="cc-date" type="text" id="expiration-date" name="expiration-date" ></td>
                             </tr>
                             <tr>
-                                <td>CVV:</td>
+                                <td >CVV:</td>
                                 <td><input class="cc-cvv" type="text" id="cvv" name="cvv" ></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <button class="but-del-pay" type="submit" form="pmt-info">Confirm Card Payment</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <sup>*</sup>Will email account details with order confirmation 
+                                </td>
                             </tr>
                         </table>
                     </form>
@@ -193,7 +208,7 @@
                     <td class="t_wgt">0</td>
                 </tr>
                 <tr>
-                    <td>Delivery charge (free above R500)</td>
+                    <td>Delivery charge (free above R1000)</td>
                     <td class="t_del">0</td>
                 </tr>
                 <tr class="lastTotRow">
@@ -211,9 +226,7 @@
         <div style="text-align:center">
             <button onclick="confirmOrder()" class="order">Place Order</button>
             <button class="orderCSV" id="orderCSV">Download to CSV</button>
-            <form method="post" action="generate.php">
-                <button type="submit">HTML Page</button>
-            </form>
+            <button class="but-del-pay" type="submit" form="del-addr">Create Email</button>
             <form method="post" action="send-email.php">
                 <button type="submit">Send Email</button>
             </form>

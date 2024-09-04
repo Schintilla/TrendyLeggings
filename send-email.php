@@ -94,11 +94,5 @@ $mail->send();
 //    echo 'Message has been sent';
 // }
 
-// if( mail($email, $subject, $message, $subject) ){
-//    echo "Sent";
-// } else { 
-//    echo "Error, check your logs"; 
-// }
 
-
-exit;
+$mail->smtpClose();
