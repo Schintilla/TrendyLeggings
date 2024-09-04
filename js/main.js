@@ -35,7 +35,7 @@ function processCSV(csvData) {
     const rows = csvData.trim().split('\n');
     for (let i = 1; i < rows.length; i++) {
         const [filename, width, height, description, additionalText, priceStr, size, stock] = rows[i].split(',');
-        const price = priceStr;
+        const price = parseInt(priceStr);
         imageData.push({ filename, width, height, description, additionalText, price: isNaN(price) ? 0 : price, size, stock });
     }
 }
@@ -68,7 +68,7 @@ function renderImages() {
         // priceP.classList.add('price');
         const priceS1 = document.createElement('span');
         priceS1.classList.add('left');
-        priceS1.textContent = "R " + item.price;
+        priceS1.textContent = "R " + item.price.toFixed(0);
         const priceS2 = document.createElement('span');
         priceS2.classList.add('right');
         priceS2.textContent = "Stock: " + item.stock;
